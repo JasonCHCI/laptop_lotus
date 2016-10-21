@@ -1,0 +1,36 @@
+#tab {
+	text-align: center;
+	padding-left: 10%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+
+}
+
+th {
+	border-top: 1px solid #777;
+	border-bottom: 3px solid #777;
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+	width: 15%;
+	height: 30px;
+}
+
+td {
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+	border-bottom: 1px solid #777;
+	height: 20px;
+}
+
+.even {
+	background-color: #ccebff;
+}
+
+#adddiv {
+		padding-left: 10%;
+}
+
+#add {
+	padding-left: 50px;
+	padding-right: 50px;
+}

@@ -1,0 +1,95 @@
+/* Side bar */
+#sidebar {
+  width: 15%;
+  float: left;
+  padding: 0 10px;
+  border-right: 1px solid #ccc;
+}
+
+
+
+#login input[type="text"],
+#signup input[type="text"],
+#signup input[type="password"],
+#login input[type="password"],
+#edit-product input[type="text"] {
+  width: 300px;
+  display: block;
+}
+
+#login label {
+  margin-top: 20px;
+}
+
+#edit-product textarea {
+  width: 300px;
+  height: 100px;
+  display: block;
+}
+
+#list {
+	float: right;
+	width: 80%;
+}
+
+
+/* Product Cell */
+.product {
+    padding-left: 50px;
+    padding-top: 50px;
+    float: left;
+    width: 25%;
+}
+
+div.img:hover {
+    border: 1px solid #777;
+}
+
+.desc {
+    text-align: center;
+}
+
+div.price {
+	text-align: center;
+	color: #ff3300;
+	cursor: pointer;
+}
+
+div.desc a {
+	color: blue;
+}
+
+div.desc a:hover {
+	color: orange;
+}
+
+div.img img {
+    width: 100%;
+}
+
+div.img {
+    border: 1px solid #ccc;
+}
+
+/* Media */
+@media only screen and (max-width: 1300px){
+    .product {
+        width: 40%;
+        margin: 6px 0;
+    }
+
+    div.img img {
+    	height: 300px;
+	}
+}
+
+@media only screen and (max-width: 700px){
+    .product {
+        width: 80%;
+        height: auto;
+    }
+
+    div.img img {
+    	height: auto;
+	}
+}

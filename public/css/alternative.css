@@ -1,0 +1,87 @@
+/* Side bar */
+#sidebar {
+  width: 15%;
+  float: left;
+  padding: 0 10px;
+  border-right: 1px solid #ccc;
+}
+
+#list {
+	float: right;
+	width: 80%;
+}
+
+
+/* Product Cell */
+.product {
+    padding-left: 50px;
+    padding-top: 50px;
+    float: left;
+    width: 25%;
+}
+
+div.img:hover {
+    border: 1px solid #777;
+}
+
+div.desc {
+    text-align: center;
+}
+
+div.price {
+	text-align: center;
+	color: #ff3300;
+	cursor: pointer;
+}
+
+div.seller {
+    text-align: center;
+    cursor: pointer;
+}
+
+div.desc a {
+	color: blue;
+}
+
+div.desc a:hover {
+	color: orange;
+}
+
+div.img img {
+    width: 100%;
+}
+
+div.img {
+    border: 1px solid #ccc;
+}
+
+div.lowest {
+    border: 1px solid red;
+}
+
+div.lowest:hover {
+    border: 1px solid gold;
+}
+
+/* Media */
+@media only screen and (max-width: 1300px){
+    .product {
+        width: 40%;
+        margin: 6px 0;
+    }
+
+    div.img img {
+    	height: 300px;
+	}
+}
+
+@media only screen and (max-width: 700px){
+    .product {
+        width: 80%;
+        height: auto;
+    }
+
+    div.img img {
+    	height: auto;
+	}
+}

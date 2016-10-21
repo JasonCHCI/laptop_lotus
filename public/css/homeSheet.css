@@ -1,0 +1,70 @@
+/* Quick Access bar */
+#quick {
+	padding-left: 20px;
+	font-family: fantasy;
+}
+
+#quick-access li {
+	margin: 20px 0px 0px 0px;
+}
+
+
+#main-page {
+	padding-top: 50px;
+}
+
+#quick-memu {
+	float: left;
+	width: 20%;
+	border-right: 1px solid #ccc;
+}
+
+#quick-access li {
+	font-family: sans-serif;
+}
+
+/* Main images */
+#ads {
+	padding-left: 50px;
+	float: left;
+	width: 60%
+}
+
+img.arrow {
+	width: 35px;
+	cursor: pointer;
+}
+
+#box1 {
+	width: 10%;
+	float: left;
+	line-height: 400px;
+}
+#box2 {
+	width: 75%;
+	float: left;
+	line-height: 400px;
+}
+#box3 {
+	width: 10%;
+	float: right;
+	line-height: 400px;
+}
+
+#main-picture {
+	display: block;
+	width: 100%;
+	cursor: pointer;
+
+}
+#box4 {
+	width: 15%;
+	float: right;
+}
+
+/* Recommendations */
+#reco {
+	border-radius: 50%;
+	width: 100%;
+	cursor: pointer;
+}
