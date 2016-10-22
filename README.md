@@ -1,10 +1,18 @@
 # Laptop Lotus
 
-### How to contribute:
+### Set up on your local machine:
+1. In Terminal, navigate to your XAMPP/htdocs folder
 1. Clone this repository
   * `$ git clone https://github.com/JasonCHCI/laptop_lotus.git`
-1.  Navigate to root of repository
-  * `$ cd laptop_lotus`
+1. Create a new database called "HLaptop" and import the sql file into the database
+1. Our website can be accessed at:  http://localhost/laptop_lotus
+
+### How to contribute:
+1. Navigate to root of repository
+  * `$ cd /path/laptop_lotus`
+1. Update your local master branch
+  * `$ git checkout master`
+  * `$ git pull`
 1. Create and switch to your own branch
   * `$ git checkout -b <your branch name>`
   * e.g. If I am creating branch, `$ git checkout -b Jue`
