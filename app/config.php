@@ -2,7 +2,7 @@
 
 // path constants
 define('SYSTEM_PATH', dirname(__FILE__)); # location of 'app' folder - don't change
-define('BASE_URL','http://localhost/cs3744/project3/hjue');
+define('BASE_URL','http://localhost/laptop_lotus');
 
 // database constants
 define('DB_HOST','127.0.0.1');
