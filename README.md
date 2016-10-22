@@ -1,1 +1,32 @@
-# laptop_lotus
+# Laptop Lotus
+
+### How to contribute:
+1. Clone this repository
+  * `$ git clone https://github.com/JasonCHCI/laptop_lotus.git`
+1.  Navigate to root of repository
+  * `$ cd laptop_lotus`
+1. Create and switch to your own branch
+  * `$ git checkout -b <your branch name>`
+  * e.g. If I am creating branch, `$ git checkout -b Jue`
+1. Implement and update code on your branch
+1. Create pull request
+  1. Add changed files
+    * `$ git add ChangedFile1 ChangedFile2 ...`
+  1. Commit changes to local branch
+    * `git commit -m "<your branch name>:<your message>"`
+    * e.g. If I am commiting, `$ git commit -m "Jue: Asynchronous Data interchange implemented"`
+  1. Push changes to remote branch
+    * `git push origin <your branch name>`
+  1. GitHub: create pull request for your branch into Master
+    * https://github.com/JasonCHCI/laptop_lotus/compare?expand=1
+      1. Select base branch: master
+      1. Select compare branch: Your Branch
+      1. Enter some meaningful comments 
+      1. Click create pull request
+    * NOTE: Please carefully review all changes before you merge a pull request, if you are not sure, let somebody else review your pull request. Test throughly on your local machine before you push.
+    
+
+### Helpful links:
+1. Basic Git: http://rogerdudler.github.io/git-guide/
+1. In-depth Git: https://git-scm.com/book/en/v2
+1. Pull request: https://help.github.com/articles/about-pull-requests/
