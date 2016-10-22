@@ -1,0 +1,34 @@
+Options -Indexes
+
+RewriteEngine on
+
+# ErrorDocument 404 /app/controller/error.php
+
+# Site
+RewriteRule ^$ app/controller/siteController.php?action=home [QSA,L]
+RewriteRule ^home/?$ app/controller/siteController.php?action=home [QSA,L]
+RewriteRule ^detail/?$ app/controller/siteController.php?action=detail [QSA,L]
+RewriteRule ^login/?$ app/controller/siteController.php?action=login [QSA,L]
+RewriteRule ^login/process/?$ app/controller/siteController.php?action=processLogin [QSA,L]
+RewriteRule ^logout/process/?$ app/controller/siteController.php?action=processLogout [QSA,L]
+RewriteRule ^alternative/?$ app/controller/siteController.php?action=alternative [QSA,L]
+RewriteRule ^signup/check/? app/controller/siteController.php?action=checkUsername [QSA,L]
+RewriteRule ^signup/?$ app/controller/siteController.php?action=signup [QSA,L]
+
+
+# Product
+RewriteRule ^laptops/(\d+)/?$ app/controller/productController.php?action=product&pid=$1 [QSA,L]
+RewriteRule ^detail/view/(\d+)/?$ app/controller/productController.php?action=viewProduct&pid=$1 [QSA,L]
+RewriteRule ^result/?$ app/controller/productController.php?action=products&ptype=laptops [QSA,L]
+RewriteRule ^sell/?$ app/controller/productController.php?action=products&ptype=sell [QSA,L]
+RewriteRule ^checkout/?$ app/controller/productController.php?action=checkout [QSA,L]
+RewriteRule ^edit/(\d+)/process/?$ app/controller/productController.php?action=editProductProcess&pid=$1 [QSA,L]
+RewriteRule ^edit/(\d+)/?$ app/controller/productController.php?action=editProduct&pid=$1 [QSA,L]
+
+RewriteRule ^profile/(\d+)/process/?$ app/controller/productController.php?action=editProfileProcess&pid=$1 [QSA,L]
+RewriteRule ^profile/(\d+)/?$ app/controller/productController.php?action=editProfile&pid=$1 [QSA,L]
+
+RewriteRule ^add/process/?$ app/controller/productController.php?action=addProductProcess [QSA,L]
+RewriteRule ^add/?$ app/controller/productController.php?action=addProduct [QSA,L]
+RewriteRule ^delete/(\d+)/?$ app/controller/productController.php?action=deleteProduct&pid=$1 [QSA,L]
+RewriteRule ^signup/process/? app/controller/productController.php?action=processSignup [QSA,L]
