@@ -29,7 +29,7 @@
 
 <body>
   <!-- The header of the website-->
-  <div id="header">
+  <div id="header" style="background-image: url(public/img/header.jpg)">
 
     <h1 id="title">The Home of Laptop</h1>
     <h2 id="slogan">The best laptops for the best of you</h2>
