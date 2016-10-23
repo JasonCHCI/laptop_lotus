@@ -13,7 +13,7 @@
 1. Update your local master branch
   * `$ git checkout master`
   * `$ git pull`
-1. Create and switch to your own branch
+1. Create and switch to your own branch (Please do not work on master branch directly as it is very likely to mess up the repo and cause merge conflicts)
   * `$ git checkout -b <your branch name>`
   * e.g. If I am creating branch, `$ git checkout -b Jue`
 1. Implement and update code on your branch
