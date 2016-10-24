@@ -354,13 +354,16 @@ function pre() {
 	var pos = imgList.indexOf(curr);
 	var next;
 	if (pos == 0) {
+		id = 12;
 		next = imgList[11];
 	}
 	else {
 		pos = pos - 1;
+		id = pos + 1;
 		next = imgList[pos];
 	}
 	fadeInImage('main-picture', next,'box2');
+	$("#homelink").attr("href", baseURL + "/detail/view/" + id.toString());
 	if ($("#recon-result").length != 0) {
 		$("#recon-result")
 		.remove();
@@ -373,13 +376,16 @@ function next() {
 	var pos = imgList.indexOf(curr);
 	var next;
 	if (pos == 11) {
+		id = 1;
 		next = imgList[0];
 	}
 	else {
 		pos = pos + 1;
+		id = pos + 1;
 		next = imgList[pos];
 	}
 	fadeInImage('main-picture', next,'box2');
+	$("#homelink").attr("href", baseURL + "/detail/view/" + id.toString());
 	if ($("#recon-result").length != 0) {
 		$("#recon-result")
 		.remove();

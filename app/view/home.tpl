@@ -15,7 +15,7 @@
 	</div>
 	<div id="ads">
 		<div id="box1"><img class="image arrow a1" src="<?= BASE_URL ?>/public/img/larrow.gif" alt="previous" onclick="pre()"></div>
-		<div id="box2"><a href="<?= BASE_URL ?>/detail/view/1"><img class="image" id="main-picture" src="<?= BASE_URL ?>/public/img/home.jpg" alt="main-pic"></a></div>
+		<div id="box2"><a id="homelink" href="<?= BASE_URL ?>/detail/view/1"><img class="image" id="main-picture" src="<?= BASE_URL ?>/public/img/home.jpg" alt="main-pic"></a></div>
 		<!-- Source: http://shop.lenovo.com/us/en/yoga-book?ipromoID=LEN748504 -->
 		<div id="box3"><img class="image arrow a2" src="<?= BASE_URL ?>/public/img/rarrow.gif" alt="next" onclick="next()"></div>
 	</div>
