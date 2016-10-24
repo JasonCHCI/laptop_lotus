@@ -203,10 +203,25 @@ class ProductController {
 		$q = $db->buildInsertQuery('user', $data);
 		$db->execute($q);
 
-		session_start();
-		$_SESSION['user'] = $u;
-		$_SESSION['cart'] = 0;
-		header('Location: '.BASE_URL);
+		$q = "SELECT * FROM user WHERE username = '$u'; ";
+		$result = mysql_query($q);
+		$adminUsername = '';
+		$adminPassword = '';
+		$id = 0;
+		while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+			$adminUsername = $row["username"];
+			$adminPassword = $row["password"];
+			$id = $row["id"];
+		}
+
+		if ($u == $adminUsername) {
+			session_start();
+			$_SESSION['user'] = $u;
+			$_SESSION['id'] = $id;
+			$_SESSION['cart'] = 0;
+			header('Location: '.BASE_URL);
+			exit();
+		}
 
 	}
 
