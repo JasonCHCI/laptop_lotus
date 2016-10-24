@@ -125,7 +125,6 @@ span {
 
 .choice1 {
 	text-align: center;
-	background-image: url("http://localhost/cs3744/project3/hjue/public/img/grey.jpg");
 	opacity: 0.3;
 	border-radius: 8%;
 	width: 140px;
@@ -134,7 +133,6 @@ span {
 }
 .choice2 {
 	text-align: center;
-	background-image: url("http://localhost/cs3744/project3/hjue/public/img/grey.jpg");
 	opacity: 0.3;
 	border-radius: 8%;
 	width: 140px;

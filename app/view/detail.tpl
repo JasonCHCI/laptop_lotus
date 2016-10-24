@@ -85,14 +85,14 @@
 
 			<div id="selection">
 				<h2 class="selection-title">Choose Your Color:</h2>
-				<div class="choice"><div id="silver" class="choice1 default" ><span>Platinum Silver <br />No Extra Price</span></div></div>
-				<div class="choice"><div id="orange" class="choice2" ><span>Clementine Orange<br />No Extra Price</span></div></div>
+				<div class="choice"><div id="silver" class="choice1 default" style="background-image: url(<?= BASE_URL ?>/public/img/grey.jpg);"><span>Platinum Silver <br />No Extra Price</span></div></div>
+				<div class="choice"><div id="orange" class="choice2" style="background-image: url(<?= BASE_URL ?>/public/img/grey.jpg);"><span>Clementine Orange<br />No Extra Price</span></div></div>
 				<h2 class="selection-title">Choose Your Hard Drive:</h2>
-				<div class="choice"><div id="256G" class="choice1 default" ><span>256GB PCIe SSD<br />No Extra Price</span></div></div>
-				<div class="choice"><div id="512G" class="choice2" ><span>512GB PCIe SSD<br /> $150.00</span></div></div>
+				<div class="choice"><div id="256G" class="choice1 default" style="background-image: url(<?= BASE_URL ?>/public/img/grey.jpg);"><span>256GB PCIe SSD<br />No Extra Price</span></div></div>
+				<div class="choice"><div id="512G" class="choice2" style="background-image: url(<?= BASE_URL ?>/public/img/grey.jpg);"><span>512GB PCIe SSD<br /> $150.00</span></div></div>
 				<h2 class="selection-title">Choose Your Memory:</h2>
-				<div class="choice"><div id="G8" class="choice1 default" ><span>8.0GB LPDDR3 1866 Mhz<br />No Extra Price</span></div></div>
-				<div class="choice"><div id="G16" class="choice2" ><span>16.0GB LPDDR3 1866 Mhz<br /> $99.99</span></div></div>
+				<div class="choice"><div id="G8" class="choice1 default" style="background-image: url(<?= BASE_URL ?>/public/img/grey.jpg);"><span>8.0GB LPDDR3 1866 Mhz<br />No Extra Price</span></div></div>
+				<div class="choice"><div id="G16" class="choice2" style="background-image: url(<?= BASE_URL ?>/public/img/grey.jpg);"><span>16.0GB LPDDR3 1866 Mhz<br /> $99.99</span></div></div>
 			</div>
 
 
