@@ -19,7 +19,7 @@
 </head>
 
 <body>
-  <div id="header">
+  <div id="header" style="background-image: url(<?= BASE_URL ?>/public/img/header.jpg)">
     <!-- The header of the website-->
     <?php
 
