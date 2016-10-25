@@ -41,8 +41,6 @@
 	<label><input type="checkbox" name="hd" value="h-d" /> Hybrid Drive<br /></label>
 
 
-	<button id="update">Update filters</button>
-
 </div>
 
 <div id="list">

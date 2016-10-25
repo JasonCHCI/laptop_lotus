@@ -163,16 +163,16 @@ $(document).ready(function(){
 			// show products matching that value
 			switch(checkedVal) {
 				case 'p0':
-				$('div.product.Under$500').show(); // show the Small items
+				$('div.product.Under500').show(); // show the Small items
 				break;
 				case 'p500':
-				$('div.product.$500to$800').show();
+				$('div.product.500to800').show();
 				break;
 				case 'p800':
-				$('div.product.$800to$1000').show();
+				$('div.product.800to1000').show();
 				break;
 				case 'p1000':
-				$('div.product.Above$1000').show();
+				$('div.product.Above1000').show();
 				break;
 			}
 		});
