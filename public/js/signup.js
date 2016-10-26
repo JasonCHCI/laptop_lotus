@@ -8,8 +8,10 @@ $(document).ready(function(){
       function(data){
         if(data.status == 'available' && $('#username').val() != '') {
           $('#username').addClass('available').removeClass('unavailable');
+          $('#u_hint').hide();
         } else if(data.status == 'unavailable') {
           $('#username').addClass('unavailable').removeClass('available');
+          $('#u_hint').show();
         }
       },
       "json"
@@ -37,11 +39,17 @@ $(document).ready(function(){
     var confirmpw = $(this).val();
     var originpw = $('#originpw').val();
 
-    if (originpw == confirmpw && originpw != '') {
+    if (originpw == '') {
+      $('#originpw').addClass('unavailable').removeClass('available');
+      $('#p_hint').hide();
+    }
+    else if (originpw == confirmpw && originpw != '') {
       $('#confirmpw').addClass('available').removeClass('unavailable');
       $('#originpw').addClass('available').removeClass('unavailable');
+      $('#p_hint').hide();
     } else {
       $('#confirmpw').addClass('unavailable').removeClass('available');
+      $('#p_hint').show();
     }
   });
 
@@ -49,11 +57,17 @@ $(document).ready(function(){
     var originpw = $(this).val();
     var confirmpw = $('#confirmpw').val();
 
-    if (originpw == confirmpw && originpw != '') {
+    if (originpw == '') {
+      $('#originpw').addClass('unavailable').removeClass('available');
+      $('#p_hint').hide();
+    }
+    else if (originpw == confirmpw && originpw != '') {
       $('#confirmpw').addClass('available').removeClass('unavailable');
       $('#originpw').addClass('available').removeClass('unavailable');
+      $('#p_hint').hide();
     } else {
       $('#confirmpw').addClass('unavailable').removeClass('available');
+      $('#p_hint').show();
     }
   });
 
