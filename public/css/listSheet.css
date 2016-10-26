@@ -7,14 +7,21 @@
 }
 
 
+#signup input[type="text"],
+#signup input[type="password"] {
+  width: 300px;
+}
+
 
 #login input[type="text"],
-#signup input[type="text"],
-#signup input[type="password"],
 #login input[type="password"],
 #edit-product input[type="text"] {
   width: 300px;
   display: block;
+}
+
+i.hint {
+  color: red;
 }
 
 #login label {

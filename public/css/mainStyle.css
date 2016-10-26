@@ -51,9 +51,6 @@
 	padding-left: 50px;
 }
 
-label.required {
-  color: red;
-}
 
 input.available {
   background-color: lightgreen;

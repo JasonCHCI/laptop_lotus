@@ -30,6 +30,8 @@ function change(opa, pic) {
 }
 
 $(document).ready(function(){
+	$('.hint').hide();
+	
 	$('.default').each(function(){
 		$(this).css("opacity", 1);
 	});
