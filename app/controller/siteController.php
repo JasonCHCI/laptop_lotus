@@ -57,6 +57,17 @@ class SiteController {
 			$this->checkUsername($username);
 			break;
 
+			case 'addcartUI':
+			session_start();
+			$pid = $_GET['pid'];
+			$uid = $_SESSION['id'];
+			$this->getCartNum($pid, $uid);
+			break;
+
+			case 'cart':
+			$this->cart();
+			break;
+
 			// redirect to home page if all else fails
 			default:
 			header('Location: '.BASE_URL);
@@ -125,6 +136,13 @@ class SiteController {
 		include_once SYSTEM_PATH.'/view/footer.tpl';
 	}
 
+	public function cart() {
+		$pageName = 'Cart';
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/cart.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
+	}
+
 	public function checkUsername($username) {
 		$user = User::loadByUsername($username);
 		if($user == null) {
@@ -161,9 +179,14 @@ class SiteController {
 
 			if(($u == $adminUsername) && ($p == $adminPassword)) {
 				session_start();
+				$_SESSION['cart'] = 0;
+				$q = "SELECT * FROM cart WHERE user_id = '$id'; ";
+				$cart = mysql_query($q);
+				while ($row = mysql_fetch_array($cart, MYSQL_ASSOC)) {
+					$_SESSION['cart'] = $_SESSION['cart'] + $row["count"];
+				}
 				$_SESSION['user'] = $u;
 				$_SESSION['id'] = $id;
-				$_SESSION['cart'] = 0;
 				header('Location: '.BASE_URL);
 				exit();
 			} else {
@@ -178,6 +201,20 @@ class SiteController {
 		session_unset();
 		header('Location: '.BASE_URL);
 		exit();
+	}
+
+	public function getCartNum($pid, $uid) {
+		$cart = Cart::loadByPIDUID($pid, $uid);
+		if($cart == null) {
+
+			$json = array( 'count' => 0 );
+		} else {
+
+			$json = array( 'count' => $cart->get('count') );
+		}
+
+		header('Content-Type: application/json');
+		echo json_encode($json);
 	}
 
 }

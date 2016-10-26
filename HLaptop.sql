@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 25, 2016 at 02:28 AM
+-- Generation Time: Oct 26, 2016 at 03:56 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -19,6 +19,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `HLaptop`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `count` int(11) NOT NULL,
+  `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `product_id`, `user_id`, `count`, `date_added`) VALUES
+(1, 1, 1, 2, '2016-10-26 01:55:30'),
+(19, 2, 1, 1, '2016-10-26 01:49:44'),
+(20, 9, 1, 1, '2016-10-26 01:49:53'),
+(21, 2, 2, 1, '2016-10-26 01:55:49'),
+(22, 6, 2, 1, '2016-10-26 01:55:53'),
+(23, 12, 2, 1, '2016-10-26 01:55:58'),
+(24, 10, 2, 1, '2016-10-26 01:56:27');
 
 -- --------------------------------------------------------
 
@@ -71,22 +98,28 @@ CREATE TABLE `user` (
   `last_name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `username` varchar(10) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `cart_number` int(11) NOT NULL DEFAULT '0',
-  `cart` varchar(200) NOT NULL
+  `password` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `username`, `password`, `cart_number`, `cart`) VALUES
-(1, 'Jue', 'Hou', 'hjue@vt.edu', 'hjue1', '123456', 0, ''),
-(2, 'Jue', 'Hou', 'hjue@vt.edu', 'hjue2', '123456', 0, '');
+INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `username`, `password`) VALUES
+(1, 'Jue', 'Hou', 'hjue@vt.edu', 'hjue1', '123456'),
+(2, 'Jue', 'Hou', 'hjue@vt.edu', 'hjue2', '123456');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_id` (`product_id`) USING BTREE,
+  ADD KEY `user_id` (`user_id`) USING BTREE;
 
 --
 -- Indexes for table `product`
@@ -105,6 +138,11 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+--
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
@@ -114,6 +152,17 @@ ALTER TABLE `product`
 --
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_pid_fk` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
+  ADD CONSTRAINT `cart_uid_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

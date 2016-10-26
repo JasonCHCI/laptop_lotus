@@ -61,7 +61,8 @@
 					<button class="bot" type="submit">Edit</button>
 				</form><form action="'.BASE_URL.'/delete/'.$p->get('id').'" method="POST">
 					<button class="bot" type="submit" onclick="return confirm(\'Are you sure you want to delete this item?\');" >Delete</button></form>
-					<button class="bot">Add to Cart</button>
+					<form action="'.BASE_URL.'/addcart/'.$p->get('id').'" method="POST">
+					<button class="bot addcart">Add to Cart</button></form>
 				</div>';
 			}
 			?>

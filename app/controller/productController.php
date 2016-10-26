@@ -75,6 +75,13 @@ class ProductController {
 			$this->checkout();
 			break;
 
+			case 'addcart':
+			session_start();
+			$pid = $_GET['pid'];
+			$uid = $_SESSION['id'];
+			$this->updateCart($pid, $uid);
+			break;
+
 			// redirect to home page if all else fails
 			default:
 			header('Location: '.BASE_URL);
@@ -247,6 +254,34 @@ class ProductController {
 		session_start();
 		$_SESSION['msg'] = "You edited the username called ".$title;
 		header('Location: '.BASE_URL.'/home/');
+	}
+
+	public function updateCart($pid, $uid) {
+		$cart = Cart::loadByPIDUID($pid, $uid);
+		if($cart == null) {
+
+			$db = Db::instance();
+			$data = array(
+				'product_id' => $pid,
+				'user_id' => $uid,
+				'count' => 1,
+			);
+
+			$q = $db->buildInsertQuery('cart', $data);
+			$db->execute($q);
+		} else {
+			$cart->set('user_id', $uid);
+			$cart->set('product_id', $pid);
+			$cart->set('count', $cart->get('count') + 1);
+			$cart->save();
+		}
+		$_SESSION['cart'] = $_SESSION['cart'] + 1;
+
+		echo "<script>
+		var baseURL = 'http://localhost/laptop_lotus';
+		alert('Product added to your cart!');
+		window.location.href= baseURL + '/result/';
+		</script>";
 	}
 
 

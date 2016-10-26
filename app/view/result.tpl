@@ -57,7 +57,8 @@
 			<?php
 			if(isset($_SESSION['user'])) {
 				echo '<div class="desc">
-					<button>Add to Cart</button>
+					<form action="'.BASE_URL.'/addcart/'.$row['id'].'" method="POST">
+					<button  class="addcart">Add to Cart</button></form>
 					<form action="'.BASE_URL.'/edit/'.$row['id'].'" method="POST">
 						<button type="submit">Edit</button>
 					</form><form action="'.BASE_URL.'/delete/'.$row['id'].'" method="POST">
