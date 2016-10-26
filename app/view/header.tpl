@@ -24,6 +24,9 @@
   <?php if($pageName == 'Login'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/login.js"></script>
   <?php endif; ?>
+  <?php if($pageName == 'Laptop' || $pageName == 'Detail'): ?>
+    <script type="text/javascript" src="<?= BASE_URL ?>/public/js/cart.js"></script>
+  <?php endif; ?>
 
 </head>
 
@@ -73,7 +76,7 @@
       <?php
 
       if(isset($_SESSION['user'])) { echo
-        '<div class="dropdown"><li class="unimplemented has-drop"><a href="">Cart('.$_SESSION['cart'].')</a></li>
+        '<div class="dropdown"><li class="has-drop"><a href="'.BASE_URL.'/cart">Cart('.$_SESSION['cart'].')</a></li>
           <div class="drop-down">
             <a href="#" class="drop-content">Checkout</a>
           </div>
