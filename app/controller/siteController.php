@@ -138,6 +138,25 @@ class SiteController {
 
 	public function cart() {
 		$pageName = 'Cart';
+		$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
+		or die ('Error: Could not connect to MySql database');
+		mysql_select_db(DB_DATABASE);
+
+		session_start();
+		$uid = $_SESSION['id'];
+		$cart_count = 0;
+		$subtotal = 0;
+
+		$q = "SELECT * FROM cart WHERE user_id = '$uid'; ";
+		$current_cart = mysql_query($q);
+		while ($row = mysql_fetch_array($current_cart, MYSQL_ASSOC)) {
+			$product = Product::loadById($row["product_id"]);
+			$cart_count = $cart_count + $row["count"];
+			$subtotal = $subtotal + $product->get('price') * $row["count"];
+		}
+
+		$result = Cart::getAllProducts($uid);
+
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/cart.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';

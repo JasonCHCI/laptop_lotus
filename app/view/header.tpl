@@ -39,8 +39,9 @@
     <ul id="primary-nav">
 
       <?php
-
-      session_start();
+      if($pageName != 'Cart') {
+        session_start();
+      }
       if(isset($_SESSION['user'])) {
 
         echo '<div class="dropdown"><li class="has-drop"><a href="'.BASE_URL.'/profile/'.$_SESSION['id'].'">Welcome '.$_SESSION['user'].'</a></li>
