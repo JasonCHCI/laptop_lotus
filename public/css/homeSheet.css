@@ -68,3 +68,7 @@ img.arrow {
 	width: 100%;
 	cursor: pointer;
 }
+
+#twitter {
+	float: right;
+}
