@@ -209,10 +209,15 @@ class SiteController {
 				header('Location: '.BASE_URL);
 				exit();
 			} else {
-				die("Account does not exist.");
-				exit();
+				$message ="Account does not exist.";
+				//pop up the aleat message
+				echo "<script type='text/javascript'>alert('$message');</script>";
 			}
 		}
+		$pageName = 'Login';
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/login.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
 	}
 
 	public function processLogout() {

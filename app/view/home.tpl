@@ -20,5 +20,7 @@
 		<div id="box3"><img class="image arrow a2" src="<?= BASE_URL ?>/public/img/rarrow.gif" alt="next" onclick="next()"></div>
 	</div>
 	<div id="box4"><img id="reco" src="<?= BASE_URL ?>/public/img/rec.png" alt="recommendations"></div>
-
+	<div id = twitter>
+		<a class="twitter-timeline" data-width="250" href="https://twitter.com/laptop_lotus">Tweets by laptop_lotus</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+	</div>
 </div>
