@@ -1,0 +1,125 @@
+#sidebar {
+  width: 15%;
+  float: left;
+  padding: 0 10px;
+  border-right: 1px solid #ccc;
+}
+
+#list {
+	float: right;
+	width: 80%;
+}
+
+.cart-list {
+    border-top: 1px solid #777;
+    border-bottom: 1px solid #777;
+    margin-left: 30px;
+    margin-top: 30px;
+    width: 80%;
+    height: 250px;
+}
+
+.cart-image {
+  width: 40%;
+}
+
+.cart-text {
+  margin-top: 30px;
+  float: left;
+  width: 20%;
+}
+
+.cart-image a img {
+  float: left;
+  margin: 20px;
+  border: 1px solid #ccc;
+}
+
+.cart-image a img:hover {
+    border: 1px solid #777;
+}
+
+.quantity {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.cart-price {
+	color: #b30000;
+  margin-bottom: 10px;
+}
+
+.small-price {
+  font-size: 20px;
+}
+
+.cart-title {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+
+
+
+#checkout-button {
+  background: #f0ddb8;
+  background-image: -webkit-linear-gradient(top, #f0ddb8, #ffbf00);
+  background-image: -moz-linear-gradient(top, #f0ddb8, #ffbf00);
+  background-image: -ms-linear-gradient(top, #f0ddb8, #ffbf00);
+  background-image: -o-linear-gradient(top, #f0ddb8, #ffbf00);
+  background-image: linear-gradient(to bottom, #f0ddb8, #ffbf00);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  -webkit-box-shadow: 2px 2px 6px #ff9900;
+  -moz-box-shadow: 2px 2px 6px #ff9900;
+  box-shadow: 2px 2px 6px #ff9900;
+  font-family: Arial;
+  color: #292429;
+  font-size: 17px;
+  padding: 12px 20px 12px 20px;
+  text-decoration: none;
+  text-align: center;
+}
+
+#checkout-button:hover {
+  background: #f0d7a8;
+  background-image: -webkit-linear-gradient(top, #f0d7a8, #dba207);
+  background-image: -moz-linear-gradient(top, #f0d7a8, #dba207);
+  background-image: -ms-linear-gradient(top, #f0d7a8, #dba207);
+  background-image: -o-linear-gradient(top, #f0d7a8, #dba207);
+  background-image: linear-gradient(to bottom, #f0d7a8, #dba207);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.remove {
+  background: #7360a8;
+  background-image: -webkit-linear-gradient(top, #7360a8, #3300ff);
+  background-image: -moz-linear-gradient(top, #7360a8, #3300ff);
+  background-image: -ms-linear-gradient(top, #7360a8, #3300ff);
+  background-image: -o-linear-gradient(top, #7360a8, #3300ff);
+  background-image: linear-gradient(to bottom, #7360a8, #3300ff);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  -webkit-box-shadow: 0px 0px 6px #2f41ba;
+  -moz-box-shadow: 0px 0px 6px #2f41ba;
+  box-shadow: 0px 0px 6px #2f41ba;
+  font-family: Arial;
+  color: #fafafa;
+  font-size: 12px;
+  padding: 6px 10px 6px 10px;
+  text-decoration: none;
+}
+
+.remove:hover {
+  background: #464661;
+  background-image: -webkit-linear-gradient(top, #464661, #131321);
+  background-image: -moz-linear-gradient(top, #464661, #131321);
+  background-image: -ms-linear-gradient(top, #464661, #131321);
+  background-image: -o-linear-gradient(top, #464661, #131321);
+  background-image: linear-gradient(to bottom, #464661, #131321);
+  text-decoration: none;
+  cursor: pointer;
+}
