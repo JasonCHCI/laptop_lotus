@@ -1,7 +1,10 @@
 <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/cartSheet.css">
 <div id="sidebar">
   <h2> Subtotal (<?= $cart_count ?> item):</h2> <h2 class="cart-price">$<?= $subtotal ?></h2>
+  <?php
+  if ($result != null): ?>
   <button id="checkout-button">Proceed to checkout</button>
+  <?php endif; ?>
 </div>
 
 <div id="list">
