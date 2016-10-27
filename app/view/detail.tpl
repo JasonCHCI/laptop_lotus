@@ -57,12 +57,15 @@
 		<?php
 		if(isset($_SESSION['user'])) {
 			echo '<div class="actions">
-				<form action="'.BASE_URL.'/edit/'.$p->get('id').'" method="POST">
+				<form class="act-but" action="'.BASE_URL.'/edit/'.$p->get('id').'" method="POST">
 					<button class="bot" type="submit">Edit</button>
-				</form><form action="'.BASE_URL.'/delete/'.$p->get('id').'" method="POST">
-					<button class="bot" type="submit" onclick="return confirm(\'Are you sure you want to delete this item?\');" >Delete</button></form>
-					<form action="'.BASE_URL.'/addcart/'.$p->get('id').'" method="POST">
-					<button class="bot addcart">Add to Cart</button></form>
+				</form>
+				<form class="act-but" action="'.BASE_URL.'/delete/'.$p->get('id').'" method="POST">
+					<button class="bot" type="submit" onclick="return confirm(\'Are you sure you want to delete this item?\');" >Delete</button>
+				</form>
+				<form class="act-but" action="'.BASE_URL.'/addcart/'.$p->get('id').'" method="POST">
+					<button class="bot addcart">Add to Cart</button>
+				</form>
 				</div>';
 			}
 			?>
