@@ -28,6 +28,7 @@
     <div class="cart-title"><a href="<?= BASE_URL ?>/detail/view/<?= $product->get('id') ?>"><?= $product->get('title') ?></a></div>
     <div class="quantity">Quantity: <?= $row['count']?></div>
     <div class="cart-price small-price">$<?= $product->get('price') * $row['count']?></div>
+    <div class="quantity">You added this item at: <?= date("m-j-y g:i a", strtotime($row['date_added'])) ?></div>
     <div class="cart-desc">
       <form action="<?= BASE_URL ?>/remove/<?= $product->get('id') ?>" method="POST">
         <button class="remove" type="submit" onclick="return confirm('Are you sure you want to remove this item from your cart?');" >Remove</button></form>
