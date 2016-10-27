@@ -71,7 +71,7 @@ class Cart extends DbObject {
         }
     }
 
-    // load by user id and product id
+    // load by user id
     public static function loadByUID($uid=null) {
         if($uid === null)
             return null;
@@ -79,6 +79,26 @@ class Cart extends DbObject {
         $query = sprintf(" SELECT id FROM %s WHERE user_id = '%d' ",
             self::DB_TABLE,
             $uid
+            );
+        $db = Db::instance();
+        $result = $db->lookup($query);
+        if(!mysql_num_rows($result))
+            return null;
+        else {
+            $row = mysql_fetch_assoc($result);
+            $obj = self::loadById($row['id']);
+            return ($obj);
+        }
+    }
+
+    // load by product id
+    public static function loadByPID($pid=null) {
+        if($pid === null)
+            return null;
+
+        $query = sprintf(" SELECT id FROM %s WHERE product_id = '%d' ",
+            self::DB_TABLE,
+            $pid
             );
         $db = Db::instance();
         $result = $db->lookup($query);

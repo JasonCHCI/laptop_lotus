@@ -34,6 +34,11 @@ class ProductController {
 			$this->deleteProduct($productID);
 			break;
 
+			case 'removeProduct':
+			$productID = $_GET['pid'];
+			$this->removeProduct($productID);
+			break;
+
 			case 'product':
 			$productID = $_GET['pid'];
 			$this->product($productID);
@@ -150,6 +155,22 @@ class ProductController {
 
 		session_start();
 		header('Location: '.BASE_URL.'/result/');
+	}
+
+	public function removeProduct($id) {
+		$db = Db::instance();
+		session_start();
+		$uid = $_SESSION['id'];
+		$update = "SELECT * FROM cart WHERE user_id = $uid AND product_id = $id ";
+		$q = "DELETE FROM cart WHERE user_id = $uid AND product_id = $id ";
+		$cart = mysql_query($update);
+		while ($row = mysql_fetch_array($cart, MYSQL_ASSOC)) {
+			$_SESSION['cart'] = $_SESSION['cart'] - $row['count'];
+		}
+		$db->execute($q);
+
+
+		header('Location: '.BASE_URL.'/cart/');
 	}
 
 	public function viewProduct($id) {
