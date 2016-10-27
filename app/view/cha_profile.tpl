@@ -11,11 +11,11 @@
 
     <label>Username: <?= $p->get('username') ?></label>
   </br></br></br>
-  <label>New password: <input  id="originpw" type="password" name="pw"></label>
-  <label>Confirm new Password: <input id="confirmpw" type="password" name="confirmpw"></label>
-  <label>Email address: <input type="text" name="email" value="<?= $p->get('email') ?>"></label>
-  <label>First name: <input type="text" name="fname" value="<?= $p->get('first_name') ?>"></label>
-  <label>Last name: <input type="text" name="lname" value="<?= $p->get('last_name') ?>"></label>
+  <label>New password: </br><input  id="originpw" type="password" name="pw"></label></br>
+  <label>Confirm new Password: </br><input id="confirmpw" type="password" name="confirmpw"></label><i class="hint" id="p_hint">  Confirm password does not match.</i></br>
+  <label>Email address: </br><input type="text" name="email" value="<?= $p->get('email') ?>"></label></br>
+  <label>First name: </br><input type="text" name="fname" value="<?= $p->get('first_name') ?>"></label></br>
+  <label>Last name: </br><input type="text" name="lname" value="<?= $p->get('last_name') ?>"></label></br>
 
   <input type="submit" id="create" name="submit" value="Save" disabled="disabled">
 

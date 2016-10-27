@@ -301,7 +301,7 @@ class ProductController {
 		echo "<script>
 		var baseURL = 'http://localhost/laptop_lotus';
 		alert('Product added to your cart!');
-		window.location.href= baseURL + '/result/';
+		window.location.href= baseURL + '/cart/';
 		</script>";
 	}
 
