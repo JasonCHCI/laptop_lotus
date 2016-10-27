@@ -33,4 +33,5 @@ RewriteRule ^profile/(\d+)/?$ app/controller/productController.php?action=editPr
 RewriteRule ^add/process/?$ app/controller/productController.php?action=addProductProcess [QSA,L]
 RewriteRule ^add/?$ app/controller/productController.php?action=addProduct [QSA,L]
 RewriteRule ^delete/(\d+)/?$ app/controller/productController.php?action=deleteProduct&pid=$1 [QSA,L]
+RewriteRule ^remove/(\d+)/?$ app/controller/productController.php?action=removeProduct&pid=$1 [QSA,L]
 RewriteRule ^signup/process/? app/controller/productController.php?action=processSignup [QSA,L]
