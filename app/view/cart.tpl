@@ -12,7 +12,7 @@
   ?>
   <div class="cart-list">
     <div class="cart-image">
-      <a target="blank" href="<?= BASE_URL ?>/detail/view/<?= $product->get('id') ?>">
+      <a href="<?= BASE_URL ?>/detail/view/<?= $product->get('id') ?>">
         <img src="<?= BASE_URL ?>/public/img/<?= $product->get('img_url') ?>" width="300" height="200" alt="<?= $product->get('title') ?>">
         <!-- Source: www.amazon.com -->
       </a>
