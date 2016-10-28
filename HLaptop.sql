@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.2
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 26, 2016 at 03:56 AM
+-- Host: 127.0.0.1
+-- Generation Time: Oct 28, 2016 at 09:26 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `HLaptop`
+-- Database: `hlaptop`
 --
 
 -- --------------------------------------------------------
@@ -46,6 +46,35 @@ INSERT INTO `cart` (`id`, `product_id`, `user_id`, `count`, `date_added`) VALUES
 (22, 6, 2, 1, '2016-10-26 01:55:53'),
 (23, 12, 2, 1, '2016-10-26 01:55:58'),
 (24, 10, 2, 1, '2016-10-26 01:56:27');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+CREATE TABLE `orders` (
+  `id` int(11) NOT NULL,
+  `firstName` varchar(400) NOT NULL,
+  `lastName` varchar(400) NOT NULL,
+  `address` varchar(600) NOT NULL,
+  `city` varchar(500) NOT NULL,
+  `state` varchar(200) NOT NULL,
+  `country` varchar(200) NOT NULL,
+  `zipcode` int(11) NOT NULL,
+  `phone` varchar(100) NOT NULL,
+  `creditcard` varchar(100) NOT NULL,
+  `cvv` int(11) NOT NULL,
+  `expiration` varchar(200) NOT NULL,
+  `items` varchar(5000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `orders`
+--
+
+INSERT INTO `orders` (`id`, `firstName`, `lastName`, `address`, `city`, `state`, `country`, `zipcode`, `phone`, `creditcard`, `cvv`, `expiration`, `items`) VALUES
+(40, 'carter', 'tat', '123 virginia tech', 'blacksburg', 'virginia', 'usa', 23060, '804300184', '28319832197', 233, '10/28', 'Lenovo Yoga 900Lenovo Yoga 1');
 
 -- --------------------------------------------------------
 
@@ -107,7 +136,8 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `username`, `password`) VALUES
 (1, 'Jue', 'Hou', 'hjue@vt.edu', 'hjue1', '123456'),
-(2, 'Jue', 'Hou', 'hjue@vt.edu', 'hjue2', '123456');
+(2, 'Jue', 'Hou', 'hjue@vt.edu', 'hjue2', '123456'),
+(6, 'carter', 'Tat', 'carter@gmail.com', 'carter', 'password');
 
 --
 -- Indexes for dumped tables
@@ -120,6 +150,12 @@ ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`),
   ADD KEY `product_id` (`product_id`) USING BTREE,
   ADD KEY `user_id` (`user_id`) USING BTREE;
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `product`
@@ -141,7 +177,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `product`
 --
@@ -151,7 +192,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
