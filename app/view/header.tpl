@@ -80,7 +80,7 @@
         '<div class="dropdown"><li class="has-drop"><a href="'.BASE_URL.'/cart">Cart('.$_SESSION['cart'].')</a></li>
           <div class="drop-down">
             <a href="'.BASE_URL.'/cart" class="drop-content">View Cart</a>
-            <a href="#" class="drop-content">Checkout</a>
+            <a href="'.BASE_URL.'/checkout" class="drop-content">Checkout</a>
           </div>
         </div>';
       }

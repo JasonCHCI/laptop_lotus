@@ -6,7 +6,7 @@ class Product extends DbObject {
 
     // database fields
     protected $id;
-    protected $title;
+    public $title;
     protected $brand;
     protected $size;
     protected $speed;
@@ -77,6 +77,8 @@ class Product extends DbObject {
         $obj = $db->fetchById($id, __CLASS__, self::DB_TABLE);
         return $obj;
     }
+
+  
 
     // load all products
     public static function getAllProducts($limit=null) {

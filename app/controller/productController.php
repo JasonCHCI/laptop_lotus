@@ -80,6 +80,10 @@ class ProductController {
 			$this->checkout();
 			break;
 
+			case 'processCheckout':
+			$this->processCheckout();
+			break;
+
 			case 'addcart':
 			session_start();
 			$pid = $_GET['pid'];
@@ -93,6 +97,85 @@ class ProductController {
 			exit();
 		}
 
+	}
+
+	public function processCheckout() {
+		
+		session_start();
+		$db = Db::instance();
+		
+
+		
+		$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
+		or die ('Error: Could not connect to MySql database');
+		mysql_select_db(DB_DATABASE);		
+		$uid = $_SESSION['id'];
+
+		$items = '';
+		$q = "SELECT * FROM cart WHERE user_id = '$uid'; ";
+		$current_cart = mysql_query($q);
+		while ($row = mysql_fetch_array($current_cart, MYSQL_ASSOC)) {
+			$id = $row["product_id"];
+			$product = Product::loadById($row["product_id"]);
+			$items = $items.$product->{'title'};
+
+		$k = "DELETE FROM cart WHERE user_id = $uid AND product_id = $id ";
+		$db->execute($k);
+		}
+		
+
+
+		
+
+		$data = array(
+			'id' => null,
+			'firstName' => $_POST['firstName'],
+			'lastName' => $_POST['lastName'],
+			'address' => $_POST['address'],
+			'city' =>  $_POST['city'],
+			'state' => $_POST['state'],
+			'country' => $_POST['country'],
+			'zipcode' => $_POST['zip'],
+			'phone' => $_POST['phone'],
+			'creditcard' => $_POST['creditcard'],
+			'cvv' => $_POST['cvv'],
+			'expiration' => $_POST['expiration'],
+			'items' => $items
+		);
+		
+
+		$q = $db->buildInsertQuery('orders', $data);
+		$db->execute($q);
+
+		$_SESSION['cart'] = 0;
+
+
+
+
+
+
+		echo "<script>
+		var baseURL = 'http://localhost/laptop_lotus';
+		alert('Successfully ordered!');
+		window.location.href= baseURL + '/cart/';
+		</script>";
+		
+		
+
+
+
+
+
+	}
+
+	public function checkout() {
+		$pageName = 'Checkout';
+
+		
+
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/checkout.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
 	}
 
 	public function laptops() {

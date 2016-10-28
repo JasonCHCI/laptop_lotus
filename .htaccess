@@ -23,6 +23,7 @@ RewriteRule ^detail/view/(\d+)/?$ app/controller/productController.php?action=vi
 RewriteRule ^result/?$ app/controller/productController.php?action=products&ptype=laptops [QSA,L]
 RewriteRule ^sell/?$ app/controller/productController.php?action=products&ptype=sell [QSA,L]
 RewriteRule ^checkout/?$ app/controller/productController.php?action=checkout [QSA,L]
+RewriteRule ^checkout/process?$ app/controller/productController.php?action=processCheckout [QSA,L]
 RewriteRule ^edit/(\d+)/process/?$ app/controller/productController.php?action=editProductProcess&pid=$1 [QSA,L]
 RewriteRule ^edit/(\d+)/?$ app/controller/productController.php?action=editProduct&pid=$1 [QSA,L]
 RewriteRule ^addcart/(\d+)/? app/controller/productController.php?action=addcart&pid=$1 [QSA,L]
