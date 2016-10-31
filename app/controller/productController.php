@@ -100,15 +100,15 @@ class ProductController {
 	}
 
 	public function processCheckout() {
-		
+
 		session_start();
 		$db = Db::instance();
-		
 
-		
+
+
 		$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
 		or die ('Error: Could not connect to MySql database');
-		mysql_select_db(DB_DATABASE);		
+		mysql_select_db(DB_DATABASE);
 		$uid = $_SESSION['id'];
 
 		$items = '';
@@ -122,10 +122,10 @@ class ProductController {
 		$k = "DELETE FROM cart WHERE user_id = $uid AND product_id = $id ";
 		$db->execute($k);
 		}
-		
 
 
-		
+
+
 
 		$data = array(
 			'id' => null,
@@ -142,7 +142,7 @@ class ProductController {
 			'expiration' => $_POST['expiration'],
 			'items' => $items
 		);
-		
+
 
 		$q = $db->buildInsertQuery('orders', $data);
 		$db->execute($q);
@@ -153,14 +153,13 @@ class ProductController {
 
 
 
-
+		echo "<script>var baseURL ='".BASE_URL."'</script>";
 		echo "<script>
-		var baseURL = 'http://localhost/laptop_lotus';
 		alert('Successfully ordered!');
 		window.location.href= baseURL + '/cart/';
 		</script>";
-		
-		
+
+
 
 
 
@@ -171,7 +170,7 @@ class ProductController {
 	public function checkout() {
 		$pageName = 'Checkout';
 
-		
+
 
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/checkout.tpl';
@@ -380,9 +379,8 @@ class ProductController {
 			$cart->save();
 		}
 		$_SESSION['cart'] = $_SESSION['cart'] + 1;
-
+		echo "<script>var baseURL ='".BASE_URL."'</script>";
 		echo "<script>
-		var baseURL = 'http://localhost/laptop_lotus';
 		alert('Product added to your cart!');
 		window.location.href= baseURL + '/cart/';
 		</script>";
