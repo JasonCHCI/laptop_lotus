@@ -21,7 +21,7 @@
   <?php if($pageName == 'Sell'): ?>
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/sellSheet.css">
   <?php endif; ?>
-  <?php if($pageName == 'Ship'): ?>
+  <?php if($pageName == 'Ship' || $pageName == 'Checkout'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/ship.js"></script>
   <?php endif; ?>
   <?php if($pageName == 'Login'): ?>
