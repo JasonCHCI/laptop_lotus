@@ -1,4 +1,4 @@
-
+<link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/sellSheet.css">
 <h2>Your Current Items:</h2>
 <div id="tab">
 	<table>
@@ -27,5 +27,10 @@
 <div id="adddiv">
 	<form action="<?= BASE_URL ?>/add/" method="POST">
 		<button id="add" type="submit">Add</button>
+	</form>
+</div>
+<div id="shipdiv">
+	<form action="<?= BASE_URL ?>/ship/" method="POST">
+		<button id="ship" type="submit">Ship your items</button>
 	</form>
 </div>
