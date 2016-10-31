@@ -327,14 +327,20 @@ class SiteController {
 
 }
 		catch (Exception $e) {
-    echo "Status: ";
-    echo $e->getMessage() . "\n";
-    echo "Invalid Address";
-    exit();
+
+			echo "<script>
+			var baseURL = 'http://localhost/laptop_lotus';
+			alert('Invalid address, plase confirm your address.');
+			window.location.href= baseURL + '/ship/';
+			</script>";
+    // echo "Status: ";
+    // echo $e->getMessage() . "\n";
+    // echo "Invalid Address";
+    	exit();
 }
 
 
-		
+
 	}
 
 }
