@@ -1,16 +1,16 @@
 $(document).ready(function(){
 
-  $('.addcart').click(function(){
+  $('.addcart2').click(function(){
     var username = $(this).val();
-    $.get(
+    $.post(
       baseURL+'/addcart/ui',
       { 'username': username  },
       function(data){
 
-        if(data.status == 'available' && $('#username').val() != '') {
-          $('#username').addClass('available').removeClass('unavailable');
+        if(data.status == 'available' && $('#cart11').val() != '') {
+          $('#cart11').addClass('available').removeClass('unavailable');
         } else if(data.status == 'unavailable') {
-          $('#username').addClass('unavailable').removeClass('available');
+          $('#cart11').addClass('unavailable').removeClass('available');
         }
 
 
