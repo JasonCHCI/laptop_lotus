@@ -269,6 +269,7 @@ class SiteController {
 	}
 
 	public function processShip() {
+		try {
 		require_once("../../easypost-php-master/lib/easypost.php");
 		\EasyPost\EasyPost::setApiKey('uS1Kq0rS9clNHaRVuaGYHQ');
 
@@ -322,6 +323,18 @@ class SiteController {
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/printLabel.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
+
+
+}
+		catch (Exception $e) {
+    echo "Status: ";
+    echo $e->getMessage() . "\n";
+    echo "Invalid Address";
+    exit();
+}
+
+
+		
 	}
 
 }
