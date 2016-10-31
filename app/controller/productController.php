@@ -123,10 +123,6 @@ class ProductController {
 		$db->execute($k);
 		}
 
-
-
-
-
 		$data = array(
 			'id' => null,
 			'firstName' => $_POST['firstName'],
@@ -143,27 +139,16 @@ class ProductController {
 			'items' => $items
 		);
 
-
 		$q = $db->buildInsertQuery('orders', $data);
 		$db->execute($q);
 
 		$_SESSION['cart'] = 0;
-
-
-
-
 
 		echo "<script>var baseURL ='".BASE_URL."'</script>";
 		echo "<script>
 		alert('Successfully ordered!');
 		window.location.href= baseURL + '/cart/';
 		</script>";
-
-
-
-
-
-
 
 	}
 
