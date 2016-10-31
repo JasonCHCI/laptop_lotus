@@ -68,6 +68,18 @@ class SiteController {
 			$this->cart();
 			break;
 
+			case 'ship':
+			$this->ship();
+			break;
+
+			case 'processShip':
+			$this->processShip();
+			break;
+
+			case 'print':
+			$this->printLabel();
+			break;
+
 			// redirect to home page if all else fails
 			default:
 			header('Location: '.BASE_URL);
@@ -134,6 +146,21 @@ class SiteController {
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/signup.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
+	}
+
+	public function ship() {
+		$pageName = 'Ship';
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/ship.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
+	}
+
+	public function printLabel() {
+		echo "<script>
+		var baseURL = 'http://localhost/laptop_lotus';
+		alert('Successfully printed!');
+		window.location.href= baseURL + '/sell/';
+		</script>";
 	}
 
 	public function cart() {
@@ -239,6 +266,62 @@ class SiteController {
 
 		header('Content-Type: application/json');
 		echo json_encode($json);
+	}
+
+	public function processShip() {
+		require_once("../../easypost-php-master/lib/easypost.php");
+		\EasyPost\EasyPost::setApiKey('uS1Kq0rS9clNHaRVuaGYHQ');
+
+		$to_address = \EasyPost\Address::create(
+			array(
+				"name"    => $_POST['toName'],
+				"street1" => $_POST['toAddress'],
+				"city"    => $_POST['toCity'],
+				"state"   => $_POST['toState'],
+				"zip"     => $_POST['toZip'],
+				"phone"   => $_POST['toPhone']
+			)
+		);
+		$from_address = \EasyPost\Address::create(
+			array(
+				"company" => $_POST['fromName'],
+				"street1" => $_POST['fromAddress1'],
+				"street2" => $_POST['fromAddress2'],
+				"city"    => $_POST['fromCity'],
+				"state"   => $_POST['fromState'],
+				"zip"     => $_POST['fromZip'],
+				"phone"   => $_POST['fromPhone']
+			)
+		);
+		$parcel = \EasyPost\Parcel::create(
+			array(
+				"predefined_package" => $_POST['type'],
+				"weight" => $_POST['weight']
+			)
+		);
+		$shipment = \EasyPost\Shipment::create(
+			array(
+				"to_address"   => $to_address,
+				"from_address" => $from_address,
+				"parcel"       => $parcel
+			)
+		);
+		$current_rate = null;
+		foreach ($shipment->rates as $rate) {
+			$current_rate = $rate->rate;
+		}
+
+
+		$shipment->buy($shipment->lowest_rate());
+
+		$shipment->insure(array('amount' => 100));
+
+		$label = $shipment->postage_label->label_url;
+
+		$pageName = 'Print Label';
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/printLabel.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
 	}
 
 }

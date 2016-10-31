@@ -15,11 +15,14 @@
   var baseURL = '<?= BASE_URL ?>';
   </script>
   <script src="<?= BASE_URL ?>/public/js/animation.js"></script>
-  <?php if($pageName == 'Sign Up' || $pageName == 'Profile'): ?>
+  <?php if($pageName == 'Sign Up' || $pageName == 'Profile' || $pageName == 'Ship' || $pageName == 'Checkout'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/signup.js"></script>
   <?php endif; ?>
   <?php if($pageName == 'Sell'): ?>
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/sellSheet.css">
+  <?php endif; ?>
+  <?php if($pageName == 'Ship'): ?>
+    <script type="text/javascript" src="<?= BASE_URL ?>/public/js/ship.js"></script>
   <?php endif; ?>
   <?php if($pageName == 'Login'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/login.js"></script>
