@@ -31,6 +31,6 @@
 </div>
 <div id="shipdiv">
 	<form action="<?= BASE_URL ?>/ship/" method="POST">
-		<button id="ship" type="submit">Ship your items</button>
+		<button id="ship" type="submit">Generate Shipping Label</button>
 	</form>
 </div>
