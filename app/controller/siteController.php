@@ -306,7 +306,7 @@ class SiteController {
 				"parcel"       => $parcel
 			)
 		);
-
+		$current_rate = null;
 		foreach ($shipment->rates as $rate) {
 			$current_rate = $rate->rate;
 		}
