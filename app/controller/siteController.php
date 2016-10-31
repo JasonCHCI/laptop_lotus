@@ -156,8 +156,8 @@ class SiteController {
 	}
 
 	public function printLabel() {
+		echo "<script>var baseURL ='".BASE_URL."'</script>";
 		echo "<script>
-		var baseURL = 'http://localhost/laptop_lotus';
 		alert('Successfully printed!');
 		window.location.href= baseURL + '/sell/';
 		</script>";
@@ -327,15 +327,11 @@ class SiteController {
 
 }
 		catch (Exception $e) {
-
+			echo "<script>var baseURL ='".BASE_URL."'</script>";
 			echo "<script>
-			var baseURL = 'http://localhost/laptop_lotus';
 			alert('Invalid address, plase confirm your address.');
 			window.location.href= baseURL + '/ship/';
 			</script>";
-    // echo "Status: ";
-    // echo $e->getMessage() . "\n";
-    // echo "Invalid Address";
     	exit();
 }
 
