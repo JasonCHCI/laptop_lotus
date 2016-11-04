@@ -58,6 +58,7 @@
             <a href="#" class="drop-content">Your Lists</a>
             <a href="#" class="drop-content">Your Gift Cards</a>
             <a href="#" class="drop-content">Your Profile</a>
+            <a href="'.BASE_URL.'/search/'.$_SESSION['id'].'" class="drop-content">Search Friends</a>
             <a href="#" class="drop-content">Change Location</a>
             <a href="#" class="drop-content">Your Service Requests</a>
             <a href="#" class="drop-content">Your History</a>

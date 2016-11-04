@@ -59,6 +59,14 @@ class ProductController {
 			$this->editProfile($profileID);
 			break;
 
+			case 'searchFriend':
+			$this->searchFriend();
+			break;
+
+			case 'search-post':
+			$this->searchPost();
+			break;
+
 			case 'editProfileProcess':
 			$profileID = $_GET['pid'];
 			$this->editProfileProcess($profileID);
@@ -100,15 +108,11 @@ class ProductController {
 	}
 
 	public function processCheckout() {
-		
 		session_start();
 		$db = Db::instance();
-		
-
-		
 		$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
 		or die ('Error: Could not connect to MySql database');
-		mysql_select_db(DB_DATABASE);		
+		mysql_select_db(DB_DATABASE);
 		$uid = $_SESSION['id'];
 
 		$items = '';
@@ -122,11 +126,6 @@ class ProductController {
 		$k = "DELETE FROM cart WHERE user_id = $uid AND product_id = $id ";
 		$db->execute($k);
 		}
-		
-
-
-		
-
 		$data = array(
 			'id' => null,
 			'firstName' => $_POST['firstName'],
@@ -142,37 +141,19 @@ class ProductController {
 			'expiration' => $_POST['expiration'],
 			'items' => $items
 		);
-		
-
 		$q = $db->buildInsertQuery('orders', $data);
 		$db->execute($q);
 
 		$_SESSION['cart'] = 0;
-
-
-
-
-
-
 		echo "<script>
 		var baseURL = 'http://localhost/laptop_lotus';
 		alert('Successfully ordered!');
 		window.location.href= baseURL + '/cart/';
 		</script>";
-		
-		
-
-
-
-
-
 	}
 
 	public function checkout() {
 		$pageName = 'Checkout';
-
-		
-
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/checkout.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
@@ -343,6 +324,23 @@ class ProductController {
 
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/cha_profile.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
+	}
+
+	public function searchFriend() {
+		$pageName = 'searchFriend';
+
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/search.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
+	}
+	public function searchPost() {
+		$pageName = 'search-post';
+		$username = $_POST['username'];
+		$message ="The user you want to search is $username" ;
+		echo "<script type='text/javascript'>alert('$message');</script>";
+		include_once SYSTEM_PATH.'/view/header.tpl';
+
 		include_once SYSTEM_PATH.'/view/footer.tpl';
 	}
 
