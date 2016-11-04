@@ -33,6 +33,8 @@ RewriteRule ^addcart/(\d+)/? app/controller/productController.php?action=addcart
 
 RewriteRule ^profile/(\d+)/process/?$ app/controller/productController.php?action=editProfileProcess&pid=$1 [QSA,L]
 RewriteRule ^profile/(\d+)/?$ app/controller/productController.php?action=editProfile&pid=$1 [QSA,L]
+RewriteRule ^search/(\d+)/?$ app/controller/productController.php?action=searchFriend [QSA,L]
+RewriteRule ^search-post/?$ app/controller/productController.php?action=search-post [QSA,L]
 
 RewriteRule ^add/process/?$ app/controller/productController.php?action=addProductProcess [QSA,L]
 RewriteRule ^add/?$ app/controller/productController.php?action=addProduct [QSA,L]
