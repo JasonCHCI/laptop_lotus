@@ -110,10 +110,6 @@ class ProductController {
 	public function processCheckout() {
 	session_start();
 	$db = Db::instance();
-
-	$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
-	or die ('Error: Could not connect to MySql database');
-	mysql_select_db(DB_DATABASE);
 	$uid = $_SESSION['id'];
 
 	$items = '';
@@ -158,8 +154,6 @@ class ProductController {
 }
 	public function checkout() {
 		$pageName = 'Checkout';
-
-
 
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/checkout.tpl';
