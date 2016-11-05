@@ -336,12 +336,13 @@ class ProductController {
 		include_once SYSTEM_PATH.'/view/footer.tpl';
 	}
 	public function searchPost() {
-		$pageName = 'search-post';
+		$pageName = 'Search Result';
 		$username = $_POST['username'];
+		$user = User::loadByUsername($username);
 		$message ="The user you want to search is $username" ;
 		echo "<script type='text/javascript'>alert('$message');</script>";
 		include_once SYSTEM_PATH.'/view/header.tpl';
-
+		//Carter's profile page here
 		include_once SYSTEM_PATH.'/view/footer.tpl';
 	}
 
