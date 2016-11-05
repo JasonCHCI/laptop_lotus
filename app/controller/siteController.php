@@ -156,8 +156,8 @@ class SiteController {
 	}
 
 	public function printLabel() {
+		echo "<script>var baseURL ='".BASE_URL."'</script>";
 		echo "<script>
-		var baseURL = 'http://localhost/laptop_lotus';
 		alert('Successfully printed!');
 		window.location.href= baseURL + '/sell/';
 		</script>";
@@ -269,6 +269,7 @@ class SiteController {
 	}
 
 	public function processShip() {
+		try {
 		require_once("../../easypost-php-master/lib/easypost.php");
 		\EasyPost\EasyPost::setApiKey('uS1Kq0rS9clNHaRVuaGYHQ');
 
@@ -322,6 +323,20 @@ class SiteController {
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/printLabel.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
+
+
+}
+		catch (Exception $e) {
+			echo "<script>var baseURL ='".BASE_URL."'</script>";
+			echo "<script>
+			alert('Invalid address, plase confirm your address.');
+			window.location.href= baseURL + '/ship/';
+			</script>";
+    	exit();
+}
+
+
+
 	}
 
 }

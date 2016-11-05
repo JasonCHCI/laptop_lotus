@@ -21,7 +21,7 @@
   <?php if($pageName == 'Sell'): ?>
     <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/sellSheet.css">
   <?php endif; ?>
-  <?php if($pageName == 'Ship'): ?>
+  <?php if($pageName == 'Ship' || $pageName == 'Checkout'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/ship.js"></script>
   <?php endif; ?>
   <?php if($pageName == 'Login'): ?>
@@ -58,6 +58,7 @@
             <a href="#" class="drop-content">Your Lists</a>
             <a href="#" class="drop-content">Your Gift Cards</a>
             <a href="#" class="drop-content">Your Profile</a>
+            <a href="'.BASE_URL.'/search/'.$_SESSION['id'].'" class="drop-content">Search Friends</a>
             <a href="#" class="drop-content">Change Location</a>
             <a href="#" class="drop-content">Your Service Requests</a>
             <a href="#" class="drop-content">Your History</a>

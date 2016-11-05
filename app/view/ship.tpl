@@ -5,7 +5,7 @@
 
     <label>Full Name/Company Name: <input type="text" name="fromName" value=""></label>
 
-    <label>Street1: <input type="text" name="fromAddress1" value=""></label>
+    <label>Street1: <i>(Please enter valid real address. Invalid address will result in errors.)</i><input type="text" name="fromAddress1" value=""></label>
 
     <label>Street2: <input type="text" name="fromAddress2" value=""></label>
 
@@ -21,7 +21,7 @@
 
     <label>Recipient Full Name/Company Name: <input type="text" name="toName" value=""></label>
 
-    <label>Recipient Address: <input type="text" name="toAddress" value=""></label>
+    <label>Recipient Address: <i>(Please enter valid real address. Invalid address will result in errors.)</i><input type="text" name="toAddress" value=""></label>
 
     <label>City: <input type="text" name="toCity" value=""></label>
 
