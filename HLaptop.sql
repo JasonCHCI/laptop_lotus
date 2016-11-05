@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
+-- version 4.5.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Oct 28, 2016 at 09:26 PM
+-- Host: localhost
+-- Generation Time: Nov 05, 2016 at 08:43 PM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hlaptop`
+-- Database: `HLaptop`
 --
 
 -- --------------------------------------------------------
@@ -42,10 +42,76 @@ INSERT INTO `cart` (`id`, `product_id`, `user_id`, `count`, `date_added`) VALUES
 (1, 1, 1, 2, '2016-10-26 01:55:30'),
 (19, 2, 1, 1, '2016-10-26 01:49:44'),
 (20, 9, 1, 1, '2016-10-26 01:49:53'),
-(21, 2, 2, 1, '2016-10-26 01:55:49'),
-(22, 6, 2, 1, '2016-10-26 01:55:53'),
-(23, 12, 2, 1, '2016-10-26 01:55:58'),
-(24, 10, 2, 1, '2016-10-26 01:56:27');
+(28, 1, 2, 5, '2016-10-31 01:16:16'),
+(29, 2, 2, 4, '2016-10-31 02:44:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event`
+--
+
+CREATE TABLE `event` (
+  `id` int(11) NOT NULL,
+  `type_id` int(11) NOT NULL,
+  `user_id_1` int(11) NOT NULL,
+  `user_id_2` int(11) DEFAULT NULL,
+  `product_id_1` int(11) DEFAULT NULL,
+  `product_id_2` int(11) DEFAULT NULL,
+  `new_data` varchar(200) DEFAULT NULL,
+  `original_data` varchar(200) DEFAULT NULL,
+  `count` int(11) DEFAULT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `event`
+--
+
+INSERT INTO `event` (`id`, `type_id`, `user_id_1`, `user_id_2`, `product_id_1`, `product_id_2`, `new_data`, `original_data`, `count`, `date_created`) VALUES
+(1, 1, 2, 1, NULL, NULL, NULL, NULL, NULL, '2016-11-05 19:42:39');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `event_type`
+--
+
+CREATE TABLE `event_type` (
+  `id` int(11) NOT NULL,
+  `type` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `event_type`
+--
+
+INSERT INTO `event_type` (`id`, `type`) VALUES
+(1, 'follow'),
+(2, 'edit_product'),
+(3, 'add_product'),
+(4, 'checkout'),
+(5, 'delete_product');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `follow`
+--
+
+CREATE TABLE `follow` (
+  `id` int(11) NOT NULL,
+  `follower` int(11) NOT NULL,
+  `followee` int(11) NOT NULL,
+  `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `follow`
+--
+
+INSERT INTO `follow` (`id`, `follower`, `followee`, `date_created`) VALUES
+(1, 2, 1, '2016-11-05 19:42:11');
 
 -- --------------------------------------------------------
 
@@ -74,7 +140,18 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `firstName`, `lastName`, `address`, `city`, `state`, `country`, `zipcode`, `phone`, `creditcard`, `cvv`, `expiration`, `items`) VALUES
-(40, 'carter', 'tat', '123 virginia tech', 'blacksburg', 'virginia', 'usa', 23060, '804300184', '28319832197', 233, '10/28', 'Lenovo Yoga 900Lenovo Yoga 1');
+(40, 'carter', 'tat', '123 virginia tech', 'blacksburg', 'virginia', 'usa', 23060, '804300184', '28319832197', 233, '10/28', 'Lenovo Yoga 900Lenovo Yoga 1'),
+(41, '123', '123', '123', '123', '123', '123', 123, '123', '123', 123, '123', 'Dell T300Lenovo IdeaPad 100Lenovo Yoga 1Lenovo U31'),
+(42, '123', '123', '123', '123', '123', '123', 123, '123', '123', 123, '123', ''),
+(43, '123', '123', '123', '123', '123', '123', 123, '123', '123', 123, '123', ''),
+(44, '123', '123', '123', '123', '123', '123', 123, '123', '123', 123, '123', ''),
+(45, '', '', '', '', '', '', 0, '', '', 0, '', 'Lenovo Yoga 900'),
+(46, '', '', '', '', '', '', 0, '', '', 0, '', ''),
+(47, '', '', '', '', '', '', 0, '', '', 0, '', ''),
+(48, '', '', '', '', '', '', 0, '', '', 0, '', ''),
+(49, '', '', '', '', '', '', 0, '', '', 0, '', ''),
+(50, '', '', '', '', '', '', 0, '', '', 0, '', ''),
+(51, '', '', '', '', '', '', 0, '', '', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -137,7 +214,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id`, `first_name`, `last_name`, `email`, `username`, `password`) VALUES
 (1, 'Jue', 'Hou', 'hjue@vt.edu', 'hjue1', '123456'),
 (2, 'Jue', 'Hou', 'hjue@vt.edu', 'hjue2', '123456'),
-(6, 'carter', 'Tat', 'carter@gmail.com', 'carter', 'password');
+(6, 'carter', 'Tat', 'carter@gmail.com', 'carter', 'password'),
+(7, 'random', 'tester', 'hjue@vt.edu', 'Tester', 'Tester');
 
 --
 -- Indexes for dumped tables
@@ -150,6 +228,31 @@ ALTER TABLE `cart`
   ADD PRIMARY KEY (`id`),
   ADD KEY `product_id` (`product_id`) USING BTREE,
   ADD KEY `user_id` (`user_id`) USING BTREE;
+
+--
+-- Indexes for table `event`
+--
+ALTER TABLE `event`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `type_id` (`type_id`),
+  ADD UNIQUE KEY `user_id_1` (`user_id_1`),
+  ADD UNIQUE KEY `user_id_2` (`user_id_2`),
+  ADD UNIQUE KEY `product_id_1` (`product_id_1`),
+  ADD UNIQUE KEY `product_id_2` (`product_id_2`);
+
+--
+-- Indexes for table `event_type`
+--
+ALTER TABLE `event_type`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `follow`
+--
+ALTER TABLE `follow`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `follower` (`follower`),
+  ADD UNIQUE KEY `followee` (`followee`);
 
 --
 -- Indexes for table `orders`
@@ -177,12 +280,27 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+--
+-- AUTO_INCREMENT for table `event`
+--
+ALTER TABLE `event`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `event_type`
+--
+ALTER TABLE `event_type`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
+-- AUTO_INCREMENT for table `follow`
+--
+ALTER TABLE `follow`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT for table `product`
 --
@@ -192,7 +310,7 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- Constraints for dumped tables
 --
@@ -203,6 +321,23 @@ ALTER TABLE `user`
 ALTER TABLE `cart`
   ADD CONSTRAINT `cart_pid_fk` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
   ADD CONSTRAINT `cart_uid_fk` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
+--
+-- Constraints for table `event`
+--
+ALTER TABLE `event`
+  ADD CONSTRAINT `pid_1_fk` FOREIGN KEY (`product_id_1`) REFERENCES `product` (`id`),
+  ADD CONSTRAINT `pid_2_fk` FOREIGN KEY (`product_id_2`) REFERENCES `product` (`id`),
+  ADD CONSTRAINT `type_idfk` FOREIGN KEY (`type_id`) REFERENCES `event_type` (`id`),
+  ADD CONSTRAINT `uid_1_fk` FOREIGN KEY (`user_id_1`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `uid_2_fk` FOREIGN KEY (`user_id_2`) REFERENCES `user` (`id`);
+
+--
+-- Constraints for table `follow`
+--
+ALTER TABLE `follow`
+  ADD CONSTRAINT `followee_fk` FOREIGN KEY (`followee`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `follower_fk` FOREIGN KEY (`follower`) REFERENCES `user` (`id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
