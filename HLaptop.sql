@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 05, 2016 at 08:43 PM
+-- Generation Time: Nov 06, 2016 at 06:50 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -234,11 +234,11 @@ ALTER TABLE `cart`
 --
 ALTER TABLE `event`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `type_id` (`type_id`),
-  ADD UNIQUE KEY `user_id_1` (`user_id_1`),
-  ADD UNIQUE KEY `user_id_2` (`user_id_2`),
-  ADD UNIQUE KEY `product_id_1` (`product_id_1`),
-  ADD UNIQUE KEY `product_id_2` (`product_id_2`);
+  ADD KEY `type_id` (`type_id`) USING BTREE,
+  ADD KEY `user_id_1` (`user_id_1`) USING BTREE,
+  ADD KEY `user_id_2` (`user_id_2`) USING BTREE,
+  ADD KEY `product_id_1` (`product_id_1`) USING BTREE,
+  ADD KEY `product_id_2` (`product_id_2`) USING BTREE;
 
 --
 -- Indexes for table `event_type`
@@ -251,8 +251,8 @@ ALTER TABLE `event_type`
 --
 ALTER TABLE `follow`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `follower` (`follower`),
-  ADD UNIQUE KEY `followee` (`followee`);
+  ADD KEY `follower` (`follower`) USING BTREE,
+  ADD KEY `followee` (`followee`) USING BTREE;
 
 --
 -- Indexes for table `orders`
@@ -285,7 +285,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `event_type`
 --
