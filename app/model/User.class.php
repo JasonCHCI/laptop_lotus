@@ -11,6 +11,7 @@ class User extends DbObject {
     protected $first_name;
     protected $last_name;
     protected $email;
+	protected $perm;
 
     // constructor
     public function __construct($args = array()) {
@@ -20,7 +21,8 @@ class User extends DbObject {
             'password' => '',
             'email' => null,
             'first_name' => null,
-            'last_name' => null
+            'last_name' => null,
+			'perm' => 2
             );
 
         $args += $defaultArgs;
@@ -31,7 +33,8 @@ class User extends DbObject {
         $this->email = $args['email'];
         $this->first_name = $args['first_name'];
         $this->last_name = $args['last_name'];
-    }
+		$this->perm = $args['perm'];
+	}
 
     // save changes to object
     public function save() {
@@ -42,8 +45,9 @@ class User extends DbObject {
             'password' => $this->password,
             'email' => $this->email,
             'first_name' => $this->first_name,
-            'last_name' => $this->last_name
-            );
+            'last_name' => $this->last_name,
+            'perm' => $this->perm
+			);
         $db->store($this, __CLASS__, self::DB_TABLE, $db_properties);
     }
 

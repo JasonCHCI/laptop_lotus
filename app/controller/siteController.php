@@ -66,6 +66,7 @@ class SiteController {
 
 			case 'cart':
 			$this->cart();
+	
 			break;
 
 			case 'ship':
@@ -203,6 +204,7 @@ class SiteController {
 		echo json_encode($json);
 	}
 
+	
 	public function processLogin($u, $p) {
 		$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
 		or die ('Error: Could not connect to MySql database');

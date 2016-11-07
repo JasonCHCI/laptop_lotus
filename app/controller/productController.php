@@ -349,6 +349,7 @@ class ProductController {
 		else{
 		$message ="The user you want to search is $username" ;
 		echo "<script type='text/javascript'>alert('$message');</script>";
+		
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		//Carter's profile page here
 		include_once SYSTEM_PATH.'/view/footer.tpl';

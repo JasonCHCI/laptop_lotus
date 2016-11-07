@@ -46,7 +46,6 @@
         session_start();
       }
       if(isset($_SESSION['user'])) {
-
         echo '<div class="dropdown"><li class="has-drop"><a href="'.BASE_URL.'/profile/'.$_SESSION['id'].'">Welcome '.$_SESSION['user'].'</a></li>
           <div class="drop-down">
             <form id="logout" action="<?= BASE_URL ?>/logout/process">
@@ -62,7 +61,7 @@
             <a href="#" class="drop-content">Change Location</a>
             <a href="#" class="drop-content">Your Service Requests</a>
             <a href="#" class="drop-content">Your History</a>
-          </div>
+			</div>
         </div>';
       }
       else {
@@ -101,8 +100,20 @@
       { echo
         '<li><a href="'.BASE_URL.'/sell">Sell</a></li>';}
         ?>
-      </ul>
-
+      <?php
+      if(isset($_SESSION['user']))
+      { $id = $_SESSION['id'];
+		$user = User::loadByID($id);
+		$perm = $user->get('perm');
+		if($perm == 1){
+			echo
+			'<li><a href="'.BASE_URL.'/admin">Admin</a></li>';}
+		}
+        ?>
+	  
+		
+		
+		
       <div id="search">
         <input id="box" type="text" value="Search products"/> <button id="go">Search</button>
       </div>
