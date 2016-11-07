@@ -37,7 +37,7 @@
           <a href="#" class="drop-content">Your Membership</a>
           <a href="#" class="drop-content">Your Lists</a>
           <a href="#" class="drop-content">Your Carriers</a>
-          <a href="#" class="drop-content">Your Profile</a>
+          <a href="profile/" class="drop-content">Your Profile</a>
           <a href="#" class="drop-content">Change Location</a>
           <a href="#" class="drop-content">Your Service Requests</a>
           <a href="#" class="drop-content">Your History</a>

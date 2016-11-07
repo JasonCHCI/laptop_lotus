@@ -81,6 +81,20 @@ class SiteController {
 			$this->printLabel();
 			break;
 
+			case 'profile':
+			$this->profile();
+			break;
+
+			case 'userProfile':
+			$pid = $_GET['pid'];
+			$this->userProfile($pid);
+			break;
+
+			case 'followProfile':
+			$pid = $_GET['pid'];
+			$this->followProfile($pid);
+			break;
+
 			// redirect to home page if all else fails
 			default:
 			header('Location: '.BASE_URL);
@@ -100,6 +114,58 @@ class SiteController {
 		echo $output;
 	}
 
+	function followProfile($pid) {
+		session_start();
+
+
+		$db = Db::instance();
+
+		$data = array(
+			'id' => null,
+			'type_id' => 1,
+			'user_id_1' => $_SESSION['id'],
+			'user_id_2' => $pid,
+			'product_id_1' =>  null,
+			'product_id_2' => null,
+			'new_data' => null,
+			'original_data' => null,
+			'count' => null,
+			'date_created' => null
+		);
+
+		$q = $db->buildInsertQuery('event', $data);
+		$db->execute($q);
+
+		echo "<script>var baseURL ='".BASE_URL."'</script>";
+		echo "<script>var pid ='".$pid."'</script>";
+		echo "<script>
+		alert('Successfully followed!');
+		window.location.href= baseURL + '/profile/' + pid;
+		</script>";
+		
+		
+	}
+
+	function userProfile($pid) {
+
+		$p = User::loadById($pid);
+		$events = Event::getEventsByUserId($pid);
+
+		$pageName = 'profile';
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/profile.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
+	}
+
+	public function profile() {
+
+		$pageName = 'profile';
+		
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/profile.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
+
+	}
 	public function home() {
 		$pageName = 'Home';
 		include_once SYSTEM_PATH.'/view/header.tpl';

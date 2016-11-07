@@ -322,7 +322,8 @@ class ProductController {
 		$pageName = 'Profile';
 
 		$p = User::loadById($id);
-
+		$events = Event::getEventsByUserId($id);
+		
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/cha_profile.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
