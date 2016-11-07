@@ -346,6 +346,7 @@ class ProductController {
 		$username = $_POST['username'];
 		$message ="The user you want to search is $username" ;
 		echo "<script type='text/javascript'>alert('$message');</script>";
+		
 		include_once SYSTEM_PATH.'/view/header.tpl';
 
 		include_once SYSTEM_PATH.'/view/footer.tpl';
