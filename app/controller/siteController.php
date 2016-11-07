@@ -16,7 +16,6 @@ class SiteController {
 		switch($action) {
 			case 'home':
 			$this->home();
-			$this->getUserPermission();
 			break;
 
 			case 'sell':
@@ -205,31 +204,6 @@ class SiteController {
 		echo json_encode($json);
 	}
 
-	public function getUserPermission(){
-		/*session_start();
-		$uid = $_SESSION['id'];
-		$message ="The user you want to search is $uid" ;
-		echo "<script type='text/javascript'>alert('$message');</script>";
-		mysql_select_db(DB_DATABASE);
-		$q = "SELECT * FROM user WHERE username = 'stephen'; ";
-		$result = mysql_query($q);
-		if (!$result) {
-			die("Account does not exist.");
-			exit();
-		}
-		echo "<script type='text/javascript'>alert('$result');</script>";
-	*/
-	
-		$id = $_SESSION['id'];
-		$user = User::loadByID($id);
-		$perm = 3; //default of nonlogged in
-		if($user != null) {
-			$perm = $user->get('perm');
-		}
-
-		echo "<script type='text/javascript'>alert('$perm');</script>";
-	
-	}
 	
 	public function processLogin($u, $p) {
 		$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
