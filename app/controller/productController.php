@@ -110,10 +110,6 @@ class ProductController {
 	public function processCheckout() {
 	session_start();
 	$db = Db::instance();
-
-	$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
-	or die ('Error: Could not connect to MySql database');
-	mysql_select_db(DB_DATABASE);
 	$uid = $_SESSION['id'];
 
 	$items = '';
@@ -158,8 +154,6 @@ class ProductController {
 }
 	public function checkout() {
 		$pageName = 'Checkout';
-
-
 
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/checkout.tpl';
@@ -342,14 +336,24 @@ class ProductController {
 		include_once SYSTEM_PATH.'/view/footer.tpl';
 	}
 	public function searchPost() {
-		$pageName = 'search-post';
+		$pageName = 'Search Result';
 		$username = $_POST['username'];
+		$user = User::loadByUsername($username);
+		if($user == null){
+			$message ="The user does not exist";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+			include_once SYSTEM_PATH.'/view/header.tpl';
+			include_once SYSTEM_PATH.'/view/search.tpl';
+			include_once SYSTEM_PATH.'/view/footer.tpl';
+		}
+		else{
 		$message ="The user you want to search is $username" ;
 		echo "<script type='text/javascript'>alert('$message');</script>";
 		
 		include_once SYSTEM_PATH.'/view/header.tpl';
-
+		//Carter's profile page here
 		include_once SYSTEM_PATH.'/view/footer.tpl';
+	}
 	}
 
 	public function editProfileProcess($id) {
