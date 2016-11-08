@@ -15,6 +15,10 @@
   <label class="required">Email address: </br><input type="text" name="email"></label></br>
   <label class="required">First name: </br><input type="text" name="fname"></label></br>
   <label class="required">Last name: </br><input type="text" name="lname"></label></br>
+  <label class="required">Gender: </br>
+    <input type="radio" name="gender" value="NS" checked> Other<br>
+    <input type="radio" name="gender" value="M"> Male<br>
+    <input type="radio" name="gender" value="F"> Female<br></label></br>
 
   <input type="submit" id="create" name="submit" value="Create Account" disabled="disabled">
 

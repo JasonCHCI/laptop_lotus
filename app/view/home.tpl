@@ -24,3 +24,66 @@
 		<a class="twitter-timeline" data-width="250" href="https://twitter.com/laptop_lotus">Tweets by laptop_lotus</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</div>
 </div>
+<?php
+if(isset($_SESSION['user'])): ?>
+<div id="activity">
+	<h3>Activity Feed: </h3>
+	<ul>
+		<?php
+		$p = User::loadById($_SESSION['id']);
+		$events = Event::getEventsByUserId($_SESSION['id']);
+		foreach($events as $value) {
+			$time = $value->get('date_created');
+			if ($value->get('type_id') == 1) { //Follow event
+				$followerID = $value->get('user_id_1');
+				$follower = User::loadByID($followerID)->get('username');
+				$followeeID = $value->get('user_id_2');
+				$followee = User::loadByID($followeeID)->get('username');
+
+				echo '<li><a href="'.BASE_URL.'/profile/'.$followerID.'">'.$follower.'</a> followed <a href="'.BASE_URL.'/profile/'.$followeeID.'">'.$followee.'</a> on '.$time.'.</li>';
+			}
+
+			if ($value->get('type_id') == 2) { //edit product event
+				$productID = $value->get('product_id_1'); //ID of the product edited
+				$productName = Product::loadByID($productID)->get('title'); //Gets product name
+				$user1ID = $value->get('user_id_1'); //Current profile
+
+				$user1Name = User::loadByID($user1ID)->get('username'); //Current profile Name
+
+				echo '<li><a href="'.BASE_URL.'/profile/'.$user1ID.'">'.$user1Name.'</a> edited <a href="'.BASE_URL.'/detail/view/'.$productID.'">'.$productName.'</a> on '.$time.'.</li>';
+				
+			}
+
+			if ($value->get('type_id') == 3) { //add product event
+				$productID = $value->get('product_id_1'); //ID of the product edited
+				$productName = Product::loadByID($productID)->get('title'); //Gets product name
+				$user1ID = $value->get('user_id_1'); //Current profile
+
+				$user1Name = User::loadByID($user1ID)->get('username'); //Current profile Name
+
+				echo '<li><a href="'.BASE_URL.'/profile/'.$user1ID.'">'.$user1Name.'</a> added a new product: <a href="'.BASE_URL.'/detail/view/'.$productID.'">'.$productName.'</a> on '.$time.'.</li>';
+			}
+
+			if ($value->get('type_id') == 4) { //checkout event
+				$user1ID = $value->get('user_id_1'); //Current profile
+				$user1Name = User::loadByID($user1ID)->get('username'); //Current profile Name
+				$count = $value->get('count');
+
+				echo '<li><a href="'.BASE_URL.'/profile/'.$user1ID.'">'.$user1Name.'</a> ordered '.$count.' item(s). on '.$time.'.</li>';
+			}
+
+			if ($value->get('type_id') == 5) { //delete product event
+
+				$user1ID = $value->get('user_id_1'); //Current profile
+
+				$user1Name = User::loadByID($user1ID)->get('username'); //Current profile Name
+
+				echo '<li><a href="'.BASE_URL.'/profile/'.$user1ID.'">'.$user1Name.'</a> deleted a product.</li>';
+			}
+
+		}
+		?>
+
+	</ul>
+</div>
+<?php endif; ?>

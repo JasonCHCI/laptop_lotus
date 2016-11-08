@@ -66,7 +66,7 @@ class SiteController {
 
 			case 'cart':
 			$this->cart();
-	
+
 			break;
 
 			case 'ship':
@@ -142,8 +142,8 @@ class SiteController {
 		alert('Successfully followed!');
 		window.location.href= baseURL + '/profile/' + pid;
 		</script>";
-		
-		
+
+
 	}
 
 	function userProfile($pid) {
@@ -160,7 +160,7 @@ class SiteController {
 	public function profile() {
 
 		$pageName = 'profile';
-		
+
 		include_once SYSTEM_PATH.'/view/header.tpl';
 		include_once SYSTEM_PATH.'/view/profile.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
@@ -270,7 +270,7 @@ class SiteController {
 		echo json_encode($json);
 	}
 
-	
+
 	public function processLogin($u, $p) {
 		$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
 		or die ('Error: Could not connect to MySql database');
@@ -278,7 +278,7 @@ class SiteController {
 		$q = "SELECT * FROM user WHERE username = '$u'; ";
 		$result = mysql_query($q);
 		if (!$result) {
-			die("Account does not exist.");
+			die("Incorrect username or password.");
 			exit();
 		}
 		else {
@@ -304,7 +304,7 @@ class SiteController {
 				header('Location: '.BASE_URL);
 				exit();
 			} else {
-				$message ="Account does not exist.";
+				$message ="Incorrect username or password.";
 				//pop up the aleat message
 				echo "<script type='text/javascript'>alert('$message');</script>";
 			}
