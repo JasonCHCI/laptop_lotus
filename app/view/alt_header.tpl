@@ -2,7 +2,7 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta name="Description" content="Search Result - Lenovo">
-  <title>The Home of Laptop</title>
+  <title>Laptop Lotus</title>
 
   <style type="text/css">
 
@@ -26,7 +26,7 @@
     session_start();
     $id = $_SESSION['id'];
     ?>
-    <h1 id="title">The Home of Laptop</h1>
+    <h1 id="title">Laptop Lotus</h1>
     <h2 id="slogan">The best laptops for the best of you</h2>
     <ul id="primary-nav">
       <li><a href="<?= BASE_URL ?>/home">Home</a></li>
