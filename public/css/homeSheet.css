@@ -73,3 +73,7 @@ img.arrow {
 	width: 15%;
 	float: right;
 }
+
+#activity {
+	clear: both;
+}
