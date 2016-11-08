@@ -6,16 +6,36 @@
 <h2>Profile for <?= $p->get('username') ?></h2>
 </div>
 
-
-
+	<div id ="info">	
+		<b>Full Name:    </b><a><?= $p->get('first_name') ?>  <a><?= $p->get('last_name') ?></a></br>
+		<b>Email:    </b><a><?= $p->get('email') ?>  </a></br>
+		<b>Gender: </b><a><?= User::genderToString($p->get('gender')) ?></a>
+	</div>
+	
+	<div id ="Edit">	
+	<ul>
+	<?php
+	if(isset($_SESSION['user'])) {
+		$id = $_SESSION['id'];
+		$pid = $p->get('id');
+		if($id == $pid){
+			echo '<div><form class="act-but1" action="'.BASE_URL.'/editProfile'.'&pid=$1'.'" method="POST">
+							<button class="bot bot2" type="submit">Edit Profile</button>
+						</form></div></br>';
+		}		
+	}	
+	?>
+	</ul>
+	</div>
+	
 	<div id="followers">
 	<h3>Followers:</h3>
 	<ul>
 		<?php 
-			
+		$db = Db::instance();	
 			
 	
-	  $db = Db::instance();
+	  
       $query = sprintf("SELECT * FROM `%s` WHERE user_id_2 = %d ORDER BY date_created DESC ",
         'event',
         $pid
