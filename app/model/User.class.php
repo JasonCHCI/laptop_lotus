@@ -12,7 +12,7 @@ class User extends DbObject {
     protected $last_name;
     protected $email;
 	protected $perm;
-
+	protected $gender;
     // constructor
     public function __construct($args = array()) {
         $defaultArgs = array(
@@ -22,7 +22,8 @@ class User extends DbObject {
             'email' => null,
             'first_name' => null,
             'last_name' => null,
-			'perm' => 2
+			'perm' => 2,
+			'gender' => 'NS'
             );
 
         $args += $defaultArgs;
@@ -34,6 +35,7 @@ class User extends DbObject {
         $this->first_name = $args['first_name'];
         $this->last_name = $args['last_name'];
 		$this->perm = $args['perm'];
+		$this->gender = $args['gender'];
 	}
 
     // save changes to object
@@ -46,7 +48,8 @@ class User extends DbObject {
             'email' => $this->email,
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
-            'perm' => $this->perm
+            'perm' => $this->perm,
+			'gender' => $this->gender
 			);
         $db->store($this, __CLASS__, self::DB_TABLE, $db_properties);
     }
@@ -77,5 +80,15 @@ class User extends DbObject {
             return ($obj);
         }
     }
-
+	public static function genderToString($gender='NS'){
+		if($gender == 'NS'){
+			return 'Not Specified';
+		}
+		else if($gender == 'M'){
+			return 'Male';
+		}
+		else{
+			return 'Female';
+		}
+	}
 }
