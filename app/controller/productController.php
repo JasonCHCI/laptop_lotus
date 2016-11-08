@@ -356,13 +356,23 @@ class ProductController {
 	}
 
 	public function editProfile($id) {
-		$pageName = 'Profile';
+		session_start();
+		if($_SESSION['id'] != $id){
+			$pageName = '';
+			include_once SYSTEM_PATH.'/view/header.tpl';
+			include_once SYSTEM_PATH.'/view/unauthorized.tpl';
+			include_once SYSTEM_PATH.'/view/footer.tpl';	
+		}
+		else{
+			$pageName = 'Profile';
 
-		$p = User::loadById($id);
+			$p = User::loadById($id);
 
-		include_once SYSTEM_PATH.'/view/header.tpl';
-		include_once SYSTEM_PATH.'/view/cha_profile.tpl';
-		include_once SYSTEM_PATH.'/view/footer.tpl';
+			include_once SYSTEM_PATH.'/view/header.tpl';
+			include_once SYSTEM_PATH.'/view/cha_profile.tpl';
+			include_once SYSTEM_PATH.'/view/footer.tpl';	
+		}
+		
 	}
 
 	public function searchFriend() {

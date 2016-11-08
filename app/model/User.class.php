@@ -11,7 +11,7 @@ class User extends DbObject {
     protected $first_name;
     protected $last_name;
     protected $email;
-	  protected $perm;
+	protected $perm;
     protected $gender;
 
     // constructor
@@ -23,8 +23,8 @@ class User extends DbObject {
             'email' => null,
             'first_name' => null,
             'last_name' => null,
-			      'perm' => 2,
-            'gender' => 'NS'
+			'perm' => 2,
+			'gender' => 'NS'
             );
 
         $args += $defaultArgs;
@@ -35,7 +35,7 @@ class User extends DbObject {
         $this->email = $args['email'];
         $this->first_name = $args['first_name'];
         $this->last_name = $args['last_name'];
-		    $this->perm = $args['perm'];
+		$this->perm = $args['perm'];
         $this->gender = $args['gender'];
 	}
 
@@ -81,5 +81,15 @@ class User extends DbObject {
             return ($obj);
         }
     }
-
+	public static function genderToString($gender='NS'){
+		if($gender == 'NS'){
+			return 'Not Specified';
+		}
+		else if($gender == 'M'){
+			return 'Male';
+		}
+		else{
+			return 'Female';
+		}
+	}
 }
