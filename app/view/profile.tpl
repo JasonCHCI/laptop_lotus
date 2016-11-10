@@ -5,42 +5,41 @@
 <div id="top">
 <h2>Profile for <?= $p->get('username') ?></h2>
 </div>
-
-	<div id ="info">	
+	<div id ="info">
 		<b>Full Name:    </b><a><?= $p->get('first_name') ?>  <a><?= $p->get('last_name') ?></a></br>
 		<b>Email:    </b><a><?= $p->get('email') ?>  </a></br>
 		<b>Gender: </b><a><?= User::genderToString($p->get('gender')) ?></a>
 	</div>
-	
-	<div id ="Edit">	
+
+	<div id ="Edit">
 	<ul>
 	<?php
 	if(isset($_SESSION['user'])) {
 		$id = $_SESSION['id'];
 		$pid = $p->get('id');
 		if($id == $pid){
-			echo '<div><form class="act-but1" action="'.BASE_URL.'/editProfile'.'&pid=$1'.'" method="POST">
+			echo '<div><form class="act-but1" action="'.BASE_URL.'/editProfile'.'AND pid=$1'.'" method="POST">
 							<button class="bot bot2" type="submit">Edit Profile</button>
 						</form></div></br>';
-		}		
-	}	
+		}
+	}
 	?>
 	</ul>
 	</div>
-	
+
 	<div id="followers">
 	<h3>Followers:</h3>
 	<ul>
-		<?php 
-		$db = Db::instance();	
-			
-	
-	  
+		<?php
+		$db = Db::instance();
+
+
+
       $query = sprintf("SELECT * FROM `%s` WHERE user_id_2 = %d ORDER BY date_created DESC ",
         'event',
         $pid
         );
-     
+
       $result = $db->lookup($query);
 
       $objects = array();
@@ -57,17 +56,17 @@
       	}
       }
 
-			
-		
+
+
 			?>
-		
+
 	</ul>
 </div>
 
 <div id="activity">
 	<h3>Activity Feed: </h3>
 	<ul>
-		<?php 
+		<?php
 			foreach($events as $value) {
 			$time = $value->get('date_created');
 			if ($value->get('type_id') == 1) { //Follow event
@@ -75,7 +74,7 @@
 				$follower = User::loadByID($followerID)->get('username');
 				$followeeID = $value->get('user_id_2');
 				$followee = User::loadByID($followeeID)->get('username');
-				
+
 
 				echo '<li><a href="'.BASE_URL.'/profile/'.$followerID.'">'.$follower.'</a> followed <a href="'.BASE_URL.'/profile/'.$followeeID.'">'.$followee.'</a> on '.$time.'.</li>';
 			}
@@ -85,23 +84,23 @@
 				$productID = $value->get('product_id_1'); //ID of the product edited
 				$productName = Product::loadByID($productID)->get('title'); //Gets product name
 				$user1ID = $value->get('user_id_1'); //Current profile
-				
+
 				$user1Name = User::loadByID($user1ID)->get('username'); //Current profile Name
-				
+
 				echo '<li><a href="'.BASE_URL.'/profile/'.$user1ID.'">'.$user1Name.'</a> edited <a href="'.BASE_URL.'/detail/view/'.$productID.'">'.$productName.'</a> on '.$time.'.</li>';
 
 
 
-				
+
 			}
 
 			if ($value->get('type_id') == 3) { //add product event
 				$productID = $value->get('product_id_1'); //ID of the product edited
 				$productName = Product::loadByID($productID)->get('title'); //Gets product name
 				$user1ID = $value->get('user_id_1'); //Current profile
-				
+
 				$user1Name = User::loadByID($user1ID)->get('username'); //Current profile Name
-				
+
 				echo '<li><a href="'.BASE_URL.'/profile/'.$user1ID.'">'.$user1Name.'</a> added a new product: <a href="'.BASE_URL.'/detail/view/'.$productID.'">'.$productName.'</a> on '.$time.'.</li>';
 			}
 
@@ -114,26 +113,26 @@
 			}
 
 			if ($value->get('type_id') == 5) { //delete product event
-				
+
 				$user1ID = $value->get('user_id_1'); //Current profile
-				
+
 				$user1Name = User::loadByID($user1ID)->get('username'); //Current profile Name
-				
+
 				echo '<li><a href="'.BASE_URL.'/profile/'.$user1ID.'">'.$user1Name.'</a> deleted a product.</li>';
 			}
 
 
-			
+
 		}
 
 
 
-		?> 
-		
+		?>
+
 	</ul>
 </div>
 
-<?php 
+<?php
 if(isset($_SESSION['id'])) {
 
 echo '<form id="follow" action="'.BASE_URL.'/profile/'.$pid.'/process" method="POST">';

@@ -355,53 +355,41 @@ class ProductController {
 
 	}
 
-	public function editProfile($id) {
+public function editProfile($id) {
 		session_start();
 		if($_SESSION['id'] != $id){
 			$pageName = '';
 			include_once SYSTEM_PATH.'/view/header.tpl';
 			include_once SYSTEM_PATH.'/view/unauthorized.tpl';
-			include_once SYSTEM_PATH.'/view/footer.tpl';	
+			include_once SYSTEM_PATH.'/view/footer.tpl';
 		}
 		else{
 			$pageName = 'Profile';
-
 			$p = User::loadById($id);
-
 			include_once SYSTEM_PATH.'/view/header.tpl';
 			include_once SYSTEM_PATH.'/view/cha_profile.tpl';
-			include_once SYSTEM_PATH.'/view/footer.tpl';	
+			include_once SYSTEM_PATH.'/view/footer.tpl';
 		}
-		
-	}
 
-	public function searchFriend() {
-		$pageName = 'searchFriend';
+}
 
-		include_once SYSTEM_PATH.'/view/header.tpl';
-		include_once SYSTEM_PATH.'/view/search.tpl';
-		include_once SYSTEM_PATH.'/view/footer.tpl';
-	}
+public function searchFriend() {
+	$pageName = 'searchFriend';
+
+	include_once SYSTEM_PATH.'/view/header.tpl';
+	include_once SYSTEM_PATH.'/view/search.tpl';
+	include_once SYSTEM_PATH.'/view/footer.tpl';
+}
 	public function searchPost() {
 		$pageName = 'Search Result';
 		$username = $_POST['username'];
 		$user = User::loadByUsername($username);
-		if($user == null){
-			$message ="The user does not exist";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-			include_once SYSTEM_PATH.'/view/header.tpl';
-			include_once SYSTEM_PATH.'/view/search.tpl';
-			include_once SYSTEM_PATH.'/view/footer.tpl';
-		}
-		else{
-		$message ="The user you want to search is $username" ;
-		echo "<script type='text/javascript'>alert('$message');</script>";
+
 
 		include_once SYSTEM_PATH.'/view/header.tpl';
-		//Carter's profile page here
+		include_once SYSTEM_PATH.'/view/searchList.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
-	}
-	}
+}
 
 	public function editProfileProcess($id) {
 		$p = User::loadById($id);
