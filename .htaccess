@@ -18,6 +18,9 @@ RewriteRule ^cart/?$ app/controller/siteController.php?action=cart [QSA,L]
 RewriteRule ^ship/?$ app/controller/siteController.php?action=ship [QSA,L]
 RewriteRule ^ship/process/?$ app/controller/siteController.php?action=processShip [QSA,L]
 RewriteRule ^print/?$ app/controller/siteController.php?action=print [QSA,L]
+RewriteRule ^profile/?$ app/controller/siteController.php?action=profile [QSA,L]
+RewriteRule ^profile/(\d+)/?$ app/controller/siteController.php?action=userProfile&pid=$1 [QSA,L]
+RewriteRule ^profile/(\d+)/process/?$ app/controller/siteController.php?action=followProfile&pid=$1 [QSA,L]
 
 
 # Product
@@ -31,8 +34,8 @@ RewriteRule ^edit/(\d+)/process/?$ app/controller/productController.php?action=e
 RewriteRule ^edit/(\d+)/?$ app/controller/productController.php?action=editProduct&pid=$1 [QSA,L]
 RewriteRule ^addcart/(\d+)/? app/controller/productController.php?action=addcart&pid=$1 [QSA,L]
 
-RewriteRule ^profile/(\d+)/process/?$ app/controller/productController.php?action=editProfileProcess&pid=$1 [QSA,L]
-RewriteRule ^profile/(\d+)/?$ app/controller/productController.php?action=editProfile&pid=$1 [QSA,L]
+RewriteRule ^cprofile/(\d+)/process/?$ app/controller/productController.php?action=editProfileProcess&pid=$1 [QSA,L]
+RewriteRule ^cprofile/(\d+)/?$ app/controller/productController.php?action=editProfile&pid=$1 [QSA,L]
 RewriteRule ^search/(\d+)/?$ app/controller/productController.php?action=searchFriend [QSA,L]
 RewriteRule ^search-post/?$ app/controller/productController.php?action=search-post [QSA,L]
 

@@ -143,6 +143,15 @@ class ProductController {
 	$q = $db->buildInsertQuery('orders', $data);
 	$db->execute($q);
 
+	$event = array(
+		'id' => null,
+		'type_id' => 4,
+		'user_id_1' => $_SESSION['id'],
+		'count' => $_SESSION['cart']
+	);
+	$query = $db->buildInsertQuery('event', $event);
+	$db->execute($query);
+
 	$_SESSION['cart'] = 0;
 
 	echo "<script>var baseURL ='".BASE_URL."'</script>";
@@ -192,7 +201,9 @@ class ProductController {
 	}
 
 	public function editProductProcess($id) {
+		session_start();
 		$p = Product::loadById($id);
+		$db = Db::instance();
 
 		$p->set('title', $_POST['title']);
 		$p->set('brand', $_POST['brand']);
@@ -207,18 +218,34 @@ class ProductController {
 		$p->set('img_url', $_POST['img_url']);
 		$p->save();
 
-		session_start();
+		$event = array(
+			'id' => null,
+			'type_id' => 2,
+			'user_id_1' => $_SESSION['id'],
+			'product_id_1' => $p->get('id')
+		);
+		$query = $db->buildInsertQuery('event', $event);
+		$db->execute($query);
+
 		$_SESSION['msg'] = "You edited the product called ".$title;
 		header('Location: '.BASE_URL.'/result/');
 	}
 
 	public function deleteProduct($id) {
-
+		session_start();
 		$q = "DELETE FROM product WHERE id = $id ";
 		$db = Db::instance();
 		$db->execute($q);
 
-		session_start();
+		$event = array(
+			'id' => null,
+			'type_id' => 5,
+			'user_id_1' => $_SESSION['id'],
+			'product_id_1' => $id
+		);
+		$query = $db->buildInsertQuery('event', $event);
+		$db->execute($query);
+
 		header('Location: '.BASE_URL.'/result/');
 	}
 
@@ -257,7 +284,7 @@ class ProductController {
 
 	public function addProductProcess() {
 		$db = Db::instance();
-
+		session_start();
 		$data = array(
 			'id' => null,
 			'title' => $_POST['title'],
@@ -276,7 +303,16 @@ class ProductController {
 		$q = $db->buildInsertQuery('product', $data);
 		$db->execute($q);
 
-		session_start();
+		$p = Product::loadById($id);
+		$event = array(
+			'id' => null,
+			'type_id' => 3,
+			'user_id_1' => $_SESSION['id'],
+			'product_id_1' => $p->get('id')
+		);
+		$query = $db->buildInsertQuery('event', $event);
+		$db->execute($query);
+
 		$_SESSION['msg'] = "You inserted the product called ".$title;
 		header('Location: '.BASE_URL.'/sell/');
 	}
@@ -291,6 +327,7 @@ class ProductController {
 			'email' => $_POST['email'],
 			'first_name' =>  $_POST['fname'],
 			'last_name' => $_POST['lname'],
+			'gender' => $_POST['gender'],
 		);
 
 		$q = $db->buildInsertQuery('user', $data);
@@ -318,35 +355,41 @@ class ProductController {
 
 	}
 
-	public function editProfile($id) {
-		$pageName = 'Profile';
+public function editProfile($id) {
+		session_start();
+		if($_SESSION['id'] != $id){
+			$pageName = '';
+			include_once SYSTEM_PATH.'/view/header.tpl';
+			include_once SYSTEM_PATH.'/view/unauthorized.tpl';
+			include_once SYSTEM_PATH.'/view/footer.tpl';
+		}
+		else{
+			$pageName = 'Profile';
+			$p = User::loadById($id);
+			include_once SYSTEM_PATH.'/view/header.tpl';
+			include_once SYSTEM_PATH.'/view/cha_profile.tpl';
+			include_once SYSTEM_PATH.'/view/footer.tpl';
+		}
 
-		$p = User::loadById($id);
+}
 
-		include_once SYSTEM_PATH.'/view/header.tpl';
-		include_once SYSTEM_PATH.'/view/cha_profile.tpl';
-		include_once SYSTEM_PATH.'/view/footer.tpl';
-	}
+public function searchFriend() {
+	$pageName = 'searchFriend';
 
-	public function searchFriend() {
-		$pageName = 'searchFriend';
-
-		include_once SYSTEM_PATH.'/view/header.tpl';
-		include_once SYSTEM_PATH.'/view/search.tpl';
-		include_once SYSTEM_PATH.'/view/footer.tpl';
-	}
+	include_once SYSTEM_PATH.'/view/header.tpl';
+	include_once SYSTEM_PATH.'/view/search.tpl';
+	include_once SYSTEM_PATH.'/view/footer.tpl';
+}
 	public function searchPost() {
 		$pageName = 'Search Result';
 		$username = $_POST['username'];
 		$user = User::loadByUsername($username);
-		
-		$Message ="The user you want to search is $username" ;
-		echo "<script type='text/javascript'>alert('$Message');</script>";
-		include_once SYSTEM_PATH.'/view/header.tpl';
-		include_once SYSTEM_PATH.'/view/profile.tpl';
-		include_once SYSTEM_PATH.'/view/footer.tpl';
-	}
 
+
+		include_once SYSTEM_PATH.'/view/header.tpl';
+		include_once SYSTEM_PATH.'/view/searchList.tpl';
+		include_once SYSTEM_PATH.'/view/footer.tpl';
+}
 
 	public function editProfileProcess($id) {
 		$p = User::loadById($id);
@@ -355,6 +398,7 @@ class ProductController {
 		$p->set('email', $_POST['email']);
 		$p->set('first_name', $_POST['fname']);
 		$p->set('last_name',  $_POST['lname']);
+		$p->set('gender',  $_POST['gender']);
 		$p->save();
 
 		session_start();

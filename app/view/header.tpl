@@ -2,7 +2,7 @@
 <html lang="en"><head>
   <meta charset="utf-8">
   <meta name="Description" content="The home page of the home of the laptop.">
-  <title>The Home of Laptop | <?= $pageName ?></title>
+  <title>Laptop Lotus | <?= $pageName ?></title>
 
   <style type="text/css">
 
@@ -37,7 +37,7 @@
   <!-- The header of the website-->
   <div id="header" style="background-image: url(<?= BASE_URL ?>/public/img/header.jpg)">
 
-    <h1 id="title">The Home of Laptop</h1>
+    <a  href="<?= BASE_URL ?>/home" style="text-decoration:none;"><h1 id="title">Laptop Lotus</h1></a>
     <h2 id="slogan">The best laptops for the best of you</h2>
     <ul id="primary-nav">
 
@@ -46,23 +46,23 @@
         session_start();
       }
       if(isset($_SESSION['user'])) {
-
         echo '<div class="dropdown"><li class="has-drop"><a href="'.BASE_URL.'/profile/'.$_SESSION['id'].'">Welcome '.$_SESSION['user'].'</a></li>
           <div class="drop-down">
             <form id="logout" action="<?= BASE_URL ?>/logout/process">
-              <a href="'.BASE_URL.'/logout/process" class="drop-content">Sign Out</a>
+              <a style="color:red" href="'.BASE_URL.'/logout/process" class="drop-content">Sign Out</a>
             </form>
+            <a href="'.BASE_URL.'/cprofile/'.$_SESSION['id'].'" class="drop-content">Your Profile</a>
+            <a href="'.BASE_URL.'/cprofile/'.$_SESSION['id'].'" class="drop-content">Update Profile</a>
+            <a href="'.BASE_URL.'/search/'.$_SESSION['id'].'" class="drop-content">Search Friends</a>
             <a href="#" class="drop-content">Your Orders</a>
             <a href="#" class="drop-content">Tracking</a>
             <a href="#" class="drop-content">Your Membership</a>
             <a href="#" class="drop-content">Your Lists</a>
             <a href="#" class="drop-content">Your Gift Cards</a>
-            <a href="#" class="drop-content">Your Profile</a>
-            <a href="'.BASE_URL.'/search/'.$_SESSION['id'].'" class="drop-content">Search Friends</a>
             <a href="#" class="drop-content">Change Location</a>
             <a href="#" class="drop-content">Your Service Requests</a>
             <a href="#" class="drop-content">Your History</a>
-          </div>
+			</div>
         </div>';
       }
       else {
@@ -101,7 +101,19 @@
       { echo
         '<li><a href="'.BASE_URL.'/sell">Sell</a></li>';}
         ?>
-      </ul>
+      <?php
+      if(isset($_SESSION['user']))
+      { $id = $_SESSION['id'];
+		$user = User::loadByID($id);
+		$perm = $user->get('perm');
+		if($perm == 1){
+			echo
+			'<li><a href="'.BASE_URL.'/admin">Admin</a></li>';}
+		}
+        ?>
+
+
+
 
       <div id="search">
         <input id="box" type="text" value="Search products"/> <button id="go">Search</button>
