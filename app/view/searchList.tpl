@@ -20,11 +20,18 @@
 			     $q = sprintf("SELECT * FROM user WHERE id = %d", $i);
 			     $result = mysql_query($q);
 			     $row = mysql_fetch_assoc($result);
+
 			     if (strpos($row['username'], $username) !== false) {
              $foo = true;
              $user = User::loadByUsername($row['username']);
              $ID = $user->get('id');
              $name = $user->get('username');
+             if(isset($_SESSION['user'])) {
+               $id = $_SESSION['id'];
+               $p = User::loadById($id);
+               $hostName = $p->get('username');
+           		if(strcmp($row['username'],$hostName) !=0){
+
 
 
 			?>
@@ -34,6 +41,8 @@
               </tr>
 
 	 		     <?php
+         }
+       }
 		       }
 		 }
      if($foo == false){
