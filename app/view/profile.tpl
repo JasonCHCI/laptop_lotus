@@ -18,7 +18,7 @@
 		$id = $_SESSION['id'];
 		$pid = $p->get('id');
 		if($id == $pid){
-			echo '<div><form class="act-but1" action="'.BASE_URL.'/editProfile'.'AND pid=$1'.'" method="POST">
+			echo '<div><form class="act-but1" action="'.BASE_URL.'/cprofile/'.$id.'" method="POST">
 							<button class="bot bot2" type="submit">Edit Profile</button>
 						</form></div></br>';
 		}
