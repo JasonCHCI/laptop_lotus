@@ -1,3 +1,4 @@
+<link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/search_result.css">
 <div id = "content">
 <div id = "friend-search">
   <h2>Search Your Friends by Username</h2>
