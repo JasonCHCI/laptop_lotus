@@ -42,7 +42,7 @@
     <ul id="primary-nav">
 
       <?php
-      if($pageName != 'Cart') {
+      if($pageName != 'Cart' && $pageName != 'Profile') {
         session_start();
       }
       if(isset($_SESSION['user'])) {
