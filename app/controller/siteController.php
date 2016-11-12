@@ -232,9 +232,7 @@ class SiteController {
 
 	public function cart() {
 		$pageName = 'Cart';
-		$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
-		or die ('Error: Could not connect to MySql database');
-		mysql_select_db(DB_DATABASE);
+		$db = Db::instance();
 
 		session_start();
 		$uid = $_SESSION['id'];
@@ -272,9 +270,7 @@ class SiteController {
 
 
 	public function processLogin($u, $p) {
-		$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
-		or die ('Error: Could not connect to MySql database');
-		mysql_select_db(DB_DATABASE);
+		$db = Db::instance();
 		$q = "SELECT * FROM user WHERE username = '$u'; ";
 		$result = mysql_query($q);
 		if (!$result) {
