@@ -28,10 +28,29 @@ function change(opa, pic) {
 	$("#detail6").css("opacity", 0.3);
 	document.getElementById(opa).style.opacity = 1;
 }
+function show(checked) {
+	if (checked == true) {
+		$("#opt1").css({'color' : '#A9A9A9'});
+		$("#opt2").css({'color' : '#000000'});
+		$('.sell').hide();
+		$('.buy').show();
+		$('#toggle-box').attr('checked', false);
+	}
+	else {
+		$("#opt1").css({'color' : '#000000'});
+		$("#opt2").css({'color' : '#A9A9A9'});
+		$('.buy').hide();
+		$('.sell').show();
+		$('#toggle-box').attr('checked', true);
+	}
+}
 
 $(document).ready(function(){
+
+	$('.sell').hide();
+
 	$('.hint').hide();
-	
+
 	$('.default').each(function(){
 		$(this).css("opacity", 1);
 	});
@@ -108,6 +127,11 @@ $(document).ready(function(){
 				break;
 			}
 		});
+		if($('#toggle-box').prop('checked')) {
+    	$('.sell').hide();
+		} else {
+    	$('.buy').hide();
+		}
 	});
 
 	$('input[name="item"]').click(function(){
@@ -125,6 +149,11 @@ $(document).ready(function(){
 				break;
 			}
 		});
+		if($('#toggle-box').prop('checked')) {
+    	$('.sell').hide();
+		} else {
+    	$('.buy').hide();
+		}
 	});
 
 	// event handler for checkboxes with name "size"
@@ -152,6 +181,11 @@ $(document).ready(function(){
 				break;
 			}
 		});
+		if($('#toggle-box').prop('checked')) {
+    	$('.sell').hide();
+		} else {
+    	$('.buy').hide();
+		}
 	});
 
 	$('input[name="price"]').click(function(){
@@ -178,6 +212,11 @@ $(document).ready(function(){
 				break;
 			}
 		});
+		if($('#toggle-box').prop('checked')) {
+    	$('.sell').hide();
+		} else {
+    	$('.buy').hide();
+		}
 	});
 
 	$('input[name="hd"]').click(function(){
@@ -201,6 +240,11 @@ $(document).ready(function(){
 				break;
 			}
 		});
+		if($('#toggle-box').prop('checked')) {
+    	$('.sell').hide();
+		} else {
+    	$('.buy').hide();
+		}
 	});
 
 	$('input[name="speed"]').click(function(){
@@ -227,6 +271,11 @@ $(document).ready(function(){
 				break;
 			}
 		});
+		if($('#toggle-box').prop('checked')) {
+    	$('.sell').hide();
+		} else {
+    	$('.buy').hide();
+		}
 	});
 
 	$('input[name="weight"]').click(function(){
@@ -259,6 +308,11 @@ $(document).ready(function(){
 				break;
 			}
 		});
+		if($('#toggle-box').prop('checked')) {
+    	$('.sell').hide();
+		} else {
+    	$('.buy').hide();
+		}
 	});
 
 	$("#box").focus(function() {

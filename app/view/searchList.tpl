@@ -26,7 +26,6 @@
              $user = User::loadByUsername($row['username']);
              $ID = $user->get('id');
              $name = $user->get('username');
-             if(isset($_SESSION['user'])) {
                $id = $_SESSION['id'];
                $p = User::loadById($id);
                $hostName = $p->get('username');
@@ -41,7 +40,7 @@
               </tr>
 
 	 		     <?php
-         }
+         
        }
 		       }
 		 }
