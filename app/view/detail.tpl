@@ -76,9 +76,9 @@
 						</form>';
 					}
 					$body = $body . '</div>';
-					
+
 				echo $body;
-		
+
 			}
 			?>
 

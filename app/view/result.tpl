@@ -44,9 +44,24 @@
 </div>
 
 <div id="list">
+	<div id="toggle">
+		<h4 class="toggle-option" id="opt1" style="color: #A9A9A9">Your Items</h4>
+		<label class="switch">
+			<input id="toggle-box" type="checkbox" onchange="show(this.checked)" checked>
+			<div id="slider" class="slider round"></div>
+		</label>
+		<h4 class="toggle-option" id="opt2">Buy Items</h4>
+	</div>
 	<?php
 	while($row = mysql_fetch_assoc($result)): ?>
-	<div class="product <?= $row['brand'] ?> <?= $row['price_range'] ?> <?= $row['size'] ?> <?= $row['hard_drive'] ?> <?= $row['speed'] ?> <?= $row['weight'] ?>">
+	<div class="product
+	<?php if(isset($_SESSION['user'])) {
+		$id = $_SESSION['id'];
+		$creator_id  = $row['user_id'];
+		if($creator_id == $id) {echo "sell";}
+		else {echo "buy";}}
+		?>
+		<?= $row['brand'] ?> <?= $row['price_range'] ?> <?= $row['size'] ?> <?= $row['hard_drive'] ?> <?= $row['speed'] ?> <?= $row['weight'] ?>">
 		<div class="img">
 			<a target="blank" href="<?= BASE_URL ?>/detail/view/<?= $row['id'] ?>">
 				<img src="<?= BASE_URL ?>/public/img/<?= $row['image_url'] ?>" width="300" height="200" alt="<?= $row['title'] ?>">
@@ -74,7 +89,7 @@
 						</form>';
 					}
 					$body = $body . '</div>';
-					
+
 				echo $body;
 				}
 				?>

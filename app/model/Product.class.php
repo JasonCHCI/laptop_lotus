@@ -17,12 +17,14 @@ class Product extends DbObject {
     protected $img_url;
     protected $basic_description;
     protected $secondary_desc;
+    protected $user_id;
 
     // constructor
     public function __construct($args = array()) {
         $defaultArgs = array(
             'id' => null,
             'title' => '',
+            'user_id' => null,
             'brand' => '',
             'weight' => '',
             'speed' => '',
@@ -49,6 +51,7 @@ class Product extends DbObject {
         $this->size = $args['size'];
         $this->hard_drive = $args['hard_drive'];
         $this->img_url = $args['image_url'];
+        $this->user_id = $args['user_id'];
     }
 
     // save changes to object
@@ -67,6 +70,7 @@ class Product extends DbObject {
             'size' => $this->size,
             'hard_drive' => $this->hard_drive,
             'image_url' => $this->img_url,
+            'user_id' => $this->user_id
             );
         $db->store($this, __CLASS__, self::DB_TABLE, $db_properties);
     }
@@ -78,7 +82,7 @@ class Product extends DbObject {
         return $obj;
     }
 
-  
+
 
     // load all products
     public static function getAllProducts($limit=null) {

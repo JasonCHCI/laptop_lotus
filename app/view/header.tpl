@@ -51,7 +51,7 @@
             <form id="logout" action="<?= BASE_URL ?>/logout/process">
               <a style="color:red" href="'.BASE_URL.'/logout/process" class="drop-content">Sign Out</a>
             </form>
-            <a href="'.BASE_URL.'/cprofile/'.$_SESSION['id'].'" class="drop-content">Your Profile</a>
+            <a href="'.BASE_URL.'/profile/'.$_SESSION['id'].'" class="drop-content">Your Profile</a>
             <a href="'.BASE_URL.'/cprofile/'.$_SESSION['id'].'" class="drop-content">Update Profile</a>
             <a href="'.BASE_URL.'/search/'.$_SESSION['id'].'" class="drop-content">Search Friends</a>
             <a href="#" class="drop-content">Your Orders</a>
