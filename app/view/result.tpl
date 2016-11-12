@@ -44,6 +44,7 @@
 </div>
 
 <div id="list">
+	<?php if(isset($_SESSION['user'])): ?>
 	<div id="toggle">
 		<h4 class="toggle-option" id="opt1" style="color: #A9A9A9">Your Items</h4>
 		<label class="switch">
@@ -52,6 +53,7 @@
 		</label>
 		<h4 class="toggle-option" id="opt2">Buy Items</h4>
 	</div>
+<?php endif; ?>
 	<?php
 	while($row = mysql_fetch_assoc($result)): ?>
 	<div class="product

@@ -47,6 +47,13 @@ function show(checked) {
 
 $(document).ready(function(){
 
+	$('#searchList tr').click(function() {
+        var href = $(this).find("a").attr("href");
+        if(href) {
+            window.location = href;
+        }
+    });
+
 	$('.sell').hide();
 
 	$('.hint').hide();
