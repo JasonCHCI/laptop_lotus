@@ -81,6 +81,16 @@ if(isset($_SESSION['user'])): ?>
 				echo '<li><a href="'.BASE_URL.'/profile/'.$user1ID.'">'.$user1Name.'</a> deleted a product.</li>';
 			}
 
+			if ($value->get('type_id') == 6) { //UnFollow event
+				$unfollowerID = $value->get('user_id_1');
+				$unfollower = User::loadByID($unfollowerID)->get('username');
+				$unfolloweeID = $value->get('user_id_2');
+				$unfollowee = User::loadByID($unfolloweeID)->get('username');
+
+
+				echo '<li><a href="'.BASE_URL.'/profile/'.$unfollowerID.'">'.$unfollower.'</a> unfollowed <a href="'.BASE_URL.'/profile/'.$unfolloweeID.'">'.$unfollowee.'</a> on '.$time.'.</li>';
+			}
+
 		}
 		?>
 

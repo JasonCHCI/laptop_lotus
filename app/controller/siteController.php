@@ -95,12 +95,61 @@ class SiteController {
 			$this->followProfile($pid);
 			break;
 
+			case 'unfollow':
+			$pid = $_GET['pid'];
+			$this->unfollow($pid);
+			break;
+
 			// redirect to home page if all else fails
 			default:
 			header('Location: '.BASE_URL);
 			exit();
 
 		}
+
+	}
+
+	function unfollow($pid) {
+		session_start();
+		$db = Db::instance();
+
+		$uid1 = $_SESSION['id']; // unFollower
+		//$pid is the unfollowee
+		
+	//Delete the follow event
+	$k = "DELETE FROM event WHERE user_id_1 = $uid1 AND user_id_2 = $pid AND type_id = 1";
+	$db->execute($k);
+
+
+
+
+		$data = array(
+			'id' => null,
+			'type_id' => 6, //new unfollow event
+			'user_id_1' => $_SESSION['id'], //unFollower
+			'user_id_2' => $pid, //unfolowee
+			'product_id_1' =>  null,
+			'product_id_2' => null,
+			'new_data' => null,
+			'original_data' => null,
+			'count' => null,
+			'date_created' => null
+		);
+
+		
+
+		$q = $db->buildInsertQuery('event', $data);
+		$db->execute($q);
+
+
+
+
+	echo "<script>var baseURL ='".BASE_URL."'</script>";
+		echo "<script>var pid ='".$pid."'</script>";
+		echo "<script>
+		alert('Successfully unfollowed!');
+		window.location.href= baseURL + '/profile/' + pid;
+		</script>";
 
 	}
 
@@ -133,8 +182,12 @@ class SiteController {
 			'date_created' => null
 		);
 
+		
+
 		$q = $db->buildInsertQuery('event', $data);
+		
 		$db->execute($q);
+		
 
 		echo "<script>var baseURL ='".BASE_URL."'</script>";
 		echo "<script>var pid ='".$pid."'</script>";
@@ -158,12 +211,9 @@ class SiteController {
 	}
 
 	public function profile() {
-
-		$pageName = 'profile';
-
-		include_once SYSTEM_PATH.'/view/header.tpl';
-		include_once SYSTEM_PATH.'/view/profile.tpl';
-		include_once SYSTEM_PATH.'/view/footer.tpl';
+		session_start();
+		$id = $_SESSION['id'];
+		header('Location: '.BASE_URL.'/profile/'.$id);
 
 	}
 	public function home() {

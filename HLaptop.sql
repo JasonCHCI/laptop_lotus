@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 07, 2016 at 08:27 PM
+-- Generation Time: Nov 13, 2016 at 07:17 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -71,7 +71,7 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`id`, `type_id`, `user_id_1`, `user_id_2`, `product_id_1`, `product_id_2`, `new_data`, `original_data`, `count`, `date_created`) VALUES
-(1, 1, 2, 1, NULL, NULL, NULL, NULL, NULL, '2016-11-05 23:42:39');
+(18, 6, 6, 1, NULL, NULL, NULL, NULL, NULL, '2016-11-13 06:14:57');
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,8 @@ INSERT INTO `event_type` (`id`, `type`) VALUES
 (2, 'edit_product'),
 (3, 'add_product'),
 (4, 'checkout'),
-(5, 'delete_product');
+(5, 'delete_product'),
+(6, 'unfollow');
 
 -- --------------------------------------------------------
 
@@ -274,17 +275,17 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 --
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 --
 -- AUTO_INCREMENT for table `event_type`
 --
 ALTER TABLE `event_type`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `follow`
 --
@@ -294,7 +295,7 @@ ALTER TABLE `follow`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `product`
 --
