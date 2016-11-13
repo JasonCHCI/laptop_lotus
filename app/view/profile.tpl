@@ -122,6 +122,20 @@
 			}
 
 
+			if ($value->get('type_id') == 6) { //UnFollow event
+				$unfollowerID = $value->get('user_id_1');
+				$unfollower = User::loadByID($unfollowerID)->get('username');
+				$unfolloweeID = $value->get('user_id_2');
+				$unfollowee = User::loadByID($unfolloweeID)->get('username');
+
+
+				echo '<li><a href="'.BASE_URL.'/profile/'.$unfollowerID.'">'.$unfollower.'</a> unfollowed <a href="'.BASE_URL.'/profile/'.$unfolloweeID.'">'.$unfollowee.'</a> on '.$time.'.</li>';
+			}
+
+
+
+
+
 
 		}
 
@@ -133,12 +147,38 @@
 </div>
 
 <?php
-if(isset($_SESSION['id'])) {
+
+$alreadyFollowed = False;
+
+foreach($objects as $value) {
+      	if ($value->get('type_id') == 1) { //check for follow event
+      		$followerID = $value->get('user_id_1');
+      		$followerName = User::loadById($followerID)->get('username');
+
+      		if ($followerID == $_SESSION['id']) {
+      			$alreadyFollowed = True;
+      			break;
+      		}
+      	}
+      }
+
+
+
+if(isset($_SESSION['id']) && $_SESSION['id'] != $pid && !$alreadyFollowed) { //If Logged in and not the same user show button
 
 echo '<form id="follow" action="'.BASE_URL.'/profile/'.$pid.'/process" method="POST">';
 echo '<button>Follow User</button>';
 echo '</form>';
 }
+
+
+if ($alreadyFollowed && $_SESSION['id'] != $pid) { // If already followed and you're not looking at your own page
+	//Display unfollow button
+	echo '<form id="follow" action="'.BASE_URL.'/profile/'.$pid.'/unfollow" method="POST">';
+	echo '<button>Unfollow User</button>';
+	echo '</form>';
+}
+
 
 ?>
 </div>
