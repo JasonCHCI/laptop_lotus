@@ -69,7 +69,7 @@
 		<?php
 			foreach($events as $value) {
 			$time = $value->get('date_created');
-			if ($value->get('type_id') == 1) { //Follow event
+			if ($value->get('type_id') == 1 || $value->get('type_id') == 7) { //Follow event
 				$followerID = $value->get('user_id_1');
 				$follower = User::loadByID($followerID)->get('username');
 				$followeeID = $value->get('user_id_2');
