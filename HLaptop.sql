@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 13, 2016 at 07:17 AM
+-- Generation Time: Nov 13, 2016 at 07:43 AM
 -- Server version: 10.1.16-MariaDB
 -- PHP Version: 5.6.24
 
@@ -66,13 +66,6 @@ CREATE TABLE `event` (
   `date_created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `event`
---
-
-INSERT INTO `event` (`id`, `type_id`, `user_id_1`, `user_id_2`, `product_id_1`, `product_id_2`, `new_data`, `original_data`, `count`, `date_created`) VALUES
-(18, 6, 6, 1, NULL, NULL, NULL, NULL, NULL, '2016-11-13 06:14:57');
-
 -- --------------------------------------------------------
 
 --
@@ -94,7 +87,8 @@ INSERT INTO `event_type` (`id`, `type`) VALUES
 (3, 'add_product'),
 (4, 'checkout'),
 (5, 'delete_product'),
-(6, 'unfollow');
+(6, 'unfollow'),
+(7, 'tempfollow');
 
 -- --------------------------------------------------------
 
@@ -280,7 +274,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 --
 -- AUTO_INCREMENT for table `event_type`
 --

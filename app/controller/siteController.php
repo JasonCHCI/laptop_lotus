@@ -116,6 +116,14 @@ class SiteController {
 		$uid1 = $_SESSION['id']; // unFollower
 		//$pid is the unfollowee
 		
+
+
+	$q = "SELECT * FROM event WHERE user_id_1 = '$uid1' AND user_id_2 = $pid AND type_id = 1";
+	$result = mysql_query($q);
+
+	while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+				$date = $row['date_created'];
+			}
 	//Delete the follow event
 	$k = "DELETE FROM event WHERE user_id_1 = $uid1 AND user_id_2 = $pid AND type_id = 1";
 	$db->execute($k);
@@ -136,11 +144,25 @@ class SiteController {
 			'date_created' => null
 		);
 
+		$data2 = array(
+			'id' => null,
+			'type_id' => 7, //new unfollow event
+			'user_id_1' => $_SESSION['id'], //unFollower
+			'user_id_2' => $pid, //unfolowee
+			'product_id_1' =>  null,
+			'product_id_2' => null,
+			'new_data' => null,
+			'original_data' => null,
+			'count' => null,
+			'date_created' => $date
+		);
+
 		
 
 		$q = $db->buildInsertQuery('event', $data);
 		$db->execute($q);
-
+		$k = $db->buildInsertQuery('event', $data2);
+		$db->execute($k);
 
 
 
