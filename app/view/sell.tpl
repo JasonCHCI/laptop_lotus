@@ -7,6 +7,88 @@
  <div id="mainBubble" style="height: 618px;"><svg class="mainBubbleSVG" width="882.436" height="618"></svg></div>
 <script type="text/javascript" src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>	
 	
+
+
+
+<?php
+//~~~~~~~~~~~~~~~~~~~This php script retrieves all items in the database and prints json format to file called test.json~~~~~~~~~~~~~//
+
+$products = Product::getAllProducts(); //Retrieve all items in database
+$dell = array("name" => "Dell", "children" => array());	// Dell array with name and children
+$lenovo = array("name" => "Lenovo", "children" => array()); // Lenovo array with name and children
+$apple = array("name" => "Apple", "children" => array());	// apple array with name and children
+
+
+
+$arr =  array("name" => "bubble", "children" => array()); //Final JSON array
+
+
+$lenovoChildren = array(); //array of children of lenovo items
+$dellChildren = array(); //array of children of dell items
+$appleChildren = array(); //array of children of apple items
+
+while ($row = mysql_fetch_array($products, MYSQL_ASSOC)) {
+
+		if ($row['brand'] == 'lenovo') {
+			$temp = array(
+				"name" => $row['title'],
+				"address" => BASE_URL."/detail/view/".$row['id'],
+				"note" => $row['basic_description']
+				);
+			array_push($lenovoChildren, $temp); //Add to the children array
+		}
+
+		if ($row['brand'] == 'apple') {
+
+			$temp = array(
+				"name" => $row['title'],
+				"address" => BASE_URL."/detail/view/".$row['id'],
+				"note" => $row['basic_description']
+				);
+			array_push($appleChildren, $temp); //Add to the children array
+		}
+
+		if ($row['brand'] == 'dell') {
+
+			$temp = array(
+				"name" => $row['title'],
+				"address" => BASE_URL."/detail/view/".$row['id'],
+				"note" => $row['basic_description']
+				);
+			array_push($dellChildren, $temp); //Add to the children array
+			
+		}
+	}
+
+
+	$dell['children'] = $dellChildren; //Sets the children field to the children array
+	$lenovo['children'] = $lenovoChildren; //Sets the children field to the children array
+	$apple['children'] = $appleChildren; //Sets the children field to the children array
+	$result = array(); //Creates a result array
+
+
+	///Merges all 3 results
+	array_push($result, $dell);
+	array_push($result, $lenovo);
+	array_push($result, $apple);
+	
+	//Sets the children field of bubble to the result
+	$arr['children'] = $result;
+	
+	
+//~~~~~~~~~~This creates a json object in javascript ~~~~~~~~~~~~~~//
+/*	echo "<script>";
+	echo "var jsonText = ".json_encode($arr)."";		
+	echo "</script>";*/
+
+
+	//Writes to a file called test.json to load data
+	$file = fopen("../../test.json", "w") or die ("unable to open file");
+	fwrite($file, json_encode($arr));
+
+?>
+
+
 <script type="text/javascript">
  var w = window.innerWidth*0.68*0.95;
    var h = Math.ceil(w*0.7);
@@ -31,7 +113,7 @@
 	.attr("alignment-baseline", "middle")
 	.style("fill", "#888888")
 	.text(function(d) {return "Waiting for information to be loaded.";});	
-    d3.json("main_bubble.json", function(error, root) {
+    d3.json("test.json", function(error, root) {
     	console.log(error);
 	
     	var bubbleObj = svg.selectAll(".topBubble")
