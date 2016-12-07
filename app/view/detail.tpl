@@ -68,7 +68,7 @@
 							<button  class="bot bot1">Add to Cart</button>
 						</form>';
 					else{
-						$body = $body . '<form class="act-but1" action="'.BASE_URL.'/edit/'.$p->get('id').'" method="POST">
+						$body = $body . '<div class="actions"><form class="act-but1" action="'.BASE_URL.'/edit/'.$p->get('id').'" method="POST">
 							<button class="bot bot2" type="submit">Edit</button>
 						</form>
 						<form class="act-but1" action="'.BASE_URL.'/delete/'.$p->get('id').'" method="POST">
