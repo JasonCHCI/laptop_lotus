@@ -204,9 +204,13 @@ class ProductController {
 		session_start();
 		$p = Product::loadById($id);
 		$db = Db::instance();
-
 		$p->set('title', $_POST['title']);
-		$p->set('brand', $_POST['brand']);
+		if ($_POST['brand'] == "dell" || $_POST['brand'] == "lenovo" || $_POST['brand'] == "apple") {
+			$p->set('brand', $_POST['brand']);
+		}
+		else {
+			$p->set('brand', "other");
+		}
 		$p->set('weight', $_POST['weight']);
 		$p->set('speed',  $_POST['speed']);
 		$p->set('hard_drive', $_POST['hard_drive']);
@@ -222,7 +226,7 @@ class ProductController {
 			'id' => null,
 			'type_id' => 2,
 			'user_id_1' => $_SESSION['id'],
-			'product_id_1' => $p->get('id')
+			'product_id_1' => $id
 		);
 		$query = $db->buildInsertQuery('event', $event);
 		$db->execute($query);
@@ -285,10 +289,16 @@ class ProductController {
 	public function addProductProcess() {
 		$db = Db::instance();
 		session_start();
+		if ($_POST['brand'] == "dell" || $_POST['brand'] == "lenovo" || $_POST['brand'] == "apple") {
+			$brand = $_POST['brand'];
+		}
+		else {
+			$brand = "other";
+		}
 		$data = array(
 			'id' => null,
 			'title' => $_POST['title'],
-			'brand' => $_POST['brand'],
+			'brand' => $brand,
 			'weight' => $_POST['weight'],
 			'speed' =>  $_POST['speed'],
 			'hard_drive' => $_POST['hard_drive'],
@@ -298,17 +308,18 @@ class ProductController {
 			'price_range' => $_POST['price_range'],
 			'size' => $_POST['size'],
 			'image_url' => $_POST['img_url'],
+			'user_id' => $_SESSION['id']
 		);
 
 		$q = $db->buildInsertQuery('product', $data);
 		$db->execute($q);
 
-		$p = Product::loadById($id);
+
 		$event = array(
 			'id' => null,
 			'type_id' => 3,
 			'user_id_1' => $_SESSION['id'],
-			'product_id_1' => $p->get('id')
+			'product_id_1' => Db::getLastInsertID()
 		);
 		$query = $db->buildInsertQuery('event', $event);
 		$db->execute($query);
@@ -404,6 +415,10 @@ public function searchFriend() {
 		session_start();
 		$_SESSION['msg'] = "You edited the username called ".$title;
 		header('Location: '.BASE_URL.'/home/');
+		echo "<script>
+		alert('You edited your username.');
+		window.location.href= baseURL + '/home/';
+		</script>";
 	}
 
 	public function updateCart($pid, $uid) {

@@ -6,7 +6,7 @@
 <div id="list">
 <h2>Edit Product</h2>
 
-<form id="edit-product" action="<?= BASE_URL ?>/edit/<?= $id ?>/process" method="POST">
+<form id="edit-product" action="<?= BASE_URL ?>/edit/<?= $p->get('id') ?>/process" method="POST">
 
 <label class="edit-l">Title: <input type="text" name="title" value="<?= $p->get('title') ?>"></label>
 

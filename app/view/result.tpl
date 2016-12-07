@@ -6,8 +6,8 @@
 	<h4>Brand</h4>
 	<label><input type="checkbox" name="brand" value="Lenovo" checked="checked"/> Lenovo<br /></label>
 	<label><input type="checkbox" name="brand" value="Dell" checked="checked"/> Dell<br /></label>
-	<label><input type="checkbox" name="brand" value="Apple"/> Apple<br /></label>
-	<label><input type="checkbox" name="brand" value="HP" /> HP<br /></label>
+	<label><input type="checkbox" name="brand" value="Apple" checked="checked"/> Apple<br /></label>
+	<label><input type="checkbox" name="brand" value="Other" checked="checked"/> Other<br /></label>
 
 	<h4>Display Size</h4>
 	<label><input type="checkbox" name="size" value="l11inches"/> 11 Inches & Under<br /></label>

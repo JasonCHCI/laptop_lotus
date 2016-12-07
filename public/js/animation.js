@@ -132,6 +132,12 @@ $(document).ready(function(){
 				case 'Dell':
 				$('div.product.dell').show();
 				break;
+				case 'Apple':
+				$('div.product.apple').show();
+				break;
+				case 'Other':
+				$('div.product.other').show();
+				break;
 			}
 		});
 		if($('#toggle-box').prop('checked')) {
