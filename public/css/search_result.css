@@ -1,4 +1,4 @@
-div#content{width: 60%;margin: 0 auto;padding: 0 20px 20px 20px;clear: both;}
+div#contentList{width: 60%;margin: 0 auto;padding: 0 20px 20px 20px;}
 #searchList {border-collapse: collapse;width: 80%;}
 #searchList {padding-top : 20px;}
 td {padding: 8px;text-align: left;border-bottom: 1px solid #ddd;}

@@ -1,5 +1,5 @@
 <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/search_result.css">
-<div id = "content">
+<div id = "contentList">
 <div id = "friend-search">
   <h2>Search Your Friends by Username</h2>
   <form action="<?= BASE_URL ?>/search-post" method="POST">
