@@ -82,6 +82,13 @@ class Product extends DbObject {
         return $obj;
     }
 
+    // load object by title
+    public static function loadByTitle($title) {
+        $db = Db::instance();
+        $obj = $db->fetchById($title, __CLASS__, self::DB_TABLE);
+        return $obj;
+    }
+
 
 
     // load all products
