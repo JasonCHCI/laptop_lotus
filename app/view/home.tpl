@@ -5,11 +5,10 @@
 		<h2 id="quick">Quick Access</h2>
 		<ul id="quick-access">
 			<li><a href="<?= BASE_URL ?>/result">Recently Viewed</a></li>
-			<li><a href="">Top Brands</a></li>
+
 			<li><a href="<?= BASE_URL ?>/result">Today's Deals</a></li>
 			<li><a href="<?= BASE_URL ?>/result">New Arrivals</a></li>
-			<li><a href="">Batteries</a></li>
-			<li><a href="">Accessories</a></li>
+
 			<li><a href="<?= BASE_URL ?>/sell">Sell</a></li>
 		</ul>
 	</div>
@@ -51,7 +50,7 @@ if(isset($_SESSION['user'])): ?>
 				$user1Name = User::loadByID($user1ID)->get('username'); //Current profile Name
 
 				echo '<li><a href="'.BASE_URL.'/profile/'.$user1ID.'">'.$user1Name.'</a> edited <a href="'.BASE_URL.'/detail/view/'.$productID.'">'.$productName.'</a> on '.$time.'.</li>';
-				
+
 			}
 
 			if ($value->get('type_id') == 3) { //add product event

@@ -30,7 +30,7 @@
   <?php if($pageName == 'Laptop' || $pageName == 'Detail'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/cart.js"></script>
   <?php endif; ?>
-
+    <script type="text/javascript" src="<?= BASE_URL ?>/public/js/home.js"></script>
 </head>
 
 <body>
@@ -54,14 +54,7 @@
             <a href="'.BASE_URL.'/profile/'.$_SESSION['id'].'" class="drop-content">Your Profile</a>
             <a href="'.BASE_URL.'/cprofile/'.$_SESSION['id'].'" class="drop-content">Update Profile</a>
             <a href="'.BASE_URL.'/search/'.$_SESSION['id'].'" class="drop-content">Search Friends</a>
-            <a href="#" class="drop-content">Your Orders</a>
-            <a href="#" class="drop-content">Tracking</a>
-            <a href="#" class="drop-content">Your Membership</a>
-            <a href="#" class="drop-content">Your Lists</a>
-            <a href="#" class="drop-content">Your Gift Cards</a>
-            <a href="#" class="drop-content">Change Location</a>
-            <a href="#" class="drop-content">Your Service Requests</a>
-            <a href="#" class="drop-content">Your History</a>
+
 			</div>
         </div>';
       }
@@ -71,13 +64,7 @@
 
       ?>
       <li><a href="<?= BASE_URL ?>/home">Home</a></li>
-      <li><a href="<?= BASE_URL ?>/result">Popular</a></li>
-      <div class="dropdown"><li class="unimplemented has-drop"><a href="">Wish List</a></li>
-        <div class="drop-down">
-          <a href="#" class="drop-content">0 Item</a>
-          <a href="#" class="drop-content">Trash Bin</a>
-        </div>
-      </div>
+    <li><a href="<?= BASE_URL ?>/result">Popular</a></li>
       <?php
 
       if(isset($_SESSION['user'])) { echo
@@ -89,13 +76,7 @@
         </div>';
       }
       ?>
-      <div class="dropdown"><li class="unimplemented has-drop"><a href="">Find a Specialist</a></li>
-        <div class="drop-down">
-          <a href="#" class="drop-content">Laptop Specialist</a>
-          <a href="#" class="drop-content">Accessories Specialist</a>
-          <a href="#" class="drop-content">Service Specialist</a>
-        </div>
-      </div>
+
       <?php
       if(isset($_SESSION['user']))
       { echo
@@ -116,7 +97,13 @@
 
 
       <div id="search">
-        <input id="box" type="text" value="Search products"/> <button id="go">Search</button>
+
+        <link rel="stylesheet" type="text/css" href="<?= BASE_URL ?>/public/css/search_result.css">
+
+        <form action="<?= BASE_URL ?>/productSearch-post" method="POST">
+      			<input id="box" type="text" name="title" value = "Type In The Product Name" required/></label>
+      			<button id = "go">Search</button>
+      		</form>
       </div>
 
     </div>

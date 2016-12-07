@@ -36,11 +36,11 @@
 			?>
 
               <tr>
-                <td><a href= "<?= BASE_URL ?>/profile/<?php echo $ID ?>"><?php echo $name ?></a></td>
+                <td id = "clickBar"><a id = "goAddress" href= "<?= BASE_URL ?>/profile/<?php echo $ID ?>"><?php echo $name ?></a></td>
               </tr>
-
+            
 	 		     <?php
-         
+
        }
 		       }
 		 }
@@ -51,5 +51,6 @@
      }
 	?>
 </table>
+
 </div>
 </div>

@@ -67,6 +67,10 @@ class ProductController {
 			$this->searchPost();
 			break;
 
+			case 'productSearch-post':
+			$this->productSearchPost();
+			break;
+
 			case 'editProfileProcess':
 			$profileID = $_GET['pid'];
 			$this->editProfileProcess($profileID);
@@ -401,6 +405,19 @@ public function searchFriend() {
 		include_once SYSTEM_PATH.'/view/searchList.tpl';
 		include_once SYSTEM_PATH.'/view/footer.tpl';
 }
+
+public function productSearchPost() {
+	$pageName = 'Product Search Result';
+	$title = $_POST['title'];
+	$product = Product::loadByTitle($title);
+				echo "<script type='text/javascript'>alert('$title');</script>";
+
+	include_once SYSTEM_PATH.'/view/header.tpl';
+	include_once SYSTEM_PATH.'/view/productList.tpl';
+	include_once SYSTEM_PATH.'/view/footer.tpl';
+}
+
+
 
 	public function editProfileProcess($id) {
 		$p = User::loadById($id);

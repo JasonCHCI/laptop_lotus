@@ -40,6 +40,8 @@ RewriteRule ^cprofile/(\d+)/?$ app/controller/productController.php?action=editP
 RewriteRule ^search/(\d+)/?$ app/controller/productController.php?action=searchFriend [QSA,L]
 RewriteRule ^search-post/?$ app/controller/productController.php?action=search-post [QSA,L]
 
+RewriteRule ^productSearch-post/?$ app/controller/productController.php?action=productSearch-post [QSA,L]
+
 RewriteRule ^add/process/?$ app/controller/productController.php?action=addProductProcess [QSA,L]
 RewriteRule ^add/?$ app/controller/productController.php?action=addProduct [QSA,L]
 RewriteRule ^delete/(\d+)/?$ app/controller/productController.php?action=deleteProduct&pid=$1 [QSA,L]
