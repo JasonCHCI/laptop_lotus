@@ -410,9 +410,13 @@ public function productSearchPost() {
 	$pageName = 'Product Search Result';
 	$title = $_POST['title'];
 	$product = Product::loadByTitle($title);
-				echo "<script type='text/javascript'>alert('$title');</script>";
+
 
 	include_once SYSTEM_PATH.'/view/header.tpl';
+	echo "<script>var title ='".$title."'</script>";
+	echo "<script>
+	$('#box').val(title);
+	</script>";
 	include_once SYSTEM_PATH.'/view/productList.tpl';
 	include_once SYSTEM_PATH.'/view/footer.tpl';
 }

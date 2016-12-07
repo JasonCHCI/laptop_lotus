@@ -45,7 +45,7 @@
 
 <div id="list">
 	<?php if(isset($_SESSION['user'])): ?>
-	
+
 <?php endif; ?>
 	<?php
 	$conn = mysql_connect(DB_HOST, DB_USER, DB_PASS)
@@ -56,7 +56,7 @@
 		 $q = sprintf("SELECT * FROM product WHERE id = %d", $i);
 		 $result = mysql_query($q);
 		 $row = mysql_fetch_assoc($result);
-	     if (strpos($row['title'], $title) !== false) {
+	     if (strpos(strtolower($row['title']), strtolower($title)) !== false) {
 		 ?>
 	<div class="product
 		<?= $row['brand'] ?> <?= $row['price_range'] ?> <?= $row['size'] ?> <?= $row['hard_drive'] ?> <?= $row['speed'] ?> <?= $row['weight'] ?>">
