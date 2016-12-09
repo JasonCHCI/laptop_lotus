@@ -58,7 +58,7 @@ while ($row = mysql_fetch_array($products, MYSQL_ASSOC)) {
 				);
 			array_push($dellChildren, $temp); //Add to the children array
 
-		}}
+		}
 
     if ($row['brand'] == 'other') {
       $price = "The price is: $" . (string)$row['price'];
@@ -69,7 +69,7 @@ while ($row = mysql_fetch_array($products, MYSQL_ASSOC)) {
 				);
 			array_push($otherChildren, $temp); //Add to the children array
 
-		}
+		}}
 	}
 
 
@@ -486,11 +486,7 @@ var base_url = "http://localhost/laptop_lotus/";
 </script>
 
 </div>
-<div id="adddiv">
-	<form action="<?= BASE_URL ?>/add/" method="POST">
-		<button id="add" type="submit">Add</button>
-	</form>
-</div>
+
 <div id="shipdiv">
 	<form action="<?= BASE_URL ?>/ship/" method="POST">
 		<button id="ship" type="submit">Generate shipping label</button>

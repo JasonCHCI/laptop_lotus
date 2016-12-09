@@ -64,6 +64,11 @@
       ?>
       <li><a href="<?= BASE_URL ?>/home">Home</a></li>
     <li><a href="<?= BASE_URL ?>/result">Popular</a></li>
+    <?php
+    if(isset($_SESSION['user']))
+    { echo
+      '<li><a href="'.BASE_URL.'/sell">Manage</a></li>';}
+      ?>
       <?php
 
       if(isset($_SESSION['user'])) { echo
@@ -76,11 +81,7 @@
       }
       ?>
 
-      <?php
-      if(isset($_SESSION['user']))
-      { echo
-        '<li><a href="'.BASE_URL.'/sell">Sell</a></li>';}
-        ?>
+
       <?php
       if(isset($_SESSION['user']))
       { $id = $_SESSION['id'];
