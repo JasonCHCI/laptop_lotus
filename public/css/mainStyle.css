@@ -140,35 +140,17 @@ body {
 /*Footer*/
 
 #copyright {
-	clear: left;
-	float: left;
-	padding-left: 30px;
-	margin-left: 20px;
+	clear: both;
+	text-align: center;
 }
 
 #footer {
 	padding-top: 50px;
 	clear: both;
+	text-align: center;
 }
 
-#site-info {
-	float: right;
-}
-
-#help-bar {
-	margin-right: 20px;
-	clear: right;
-}
-
-#help-bar li {
-	display: inline;
-}
 
 #ctext {
 	font-size: 15px;
-}
-
-#help-bar li a {
-	font-size: 15px;
-	padding: 5px;
 }
