@@ -30,7 +30,6 @@
   <?php if($pageName == 'Laptop' || $pageName == 'Detail'): ?>
     <script type="text/javascript" src="<?= BASE_URL ?>/public/js/cart.js"></script>
   <?php endif; ?>
-    <script type="text/javascript" src="<?= BASE_URL ?>/public/js/home.js"></script>
 </head>
 
 <body>
