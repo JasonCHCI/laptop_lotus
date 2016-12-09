@@ -30,38 +30,42 @@ $addChildren = array(); //No children for add bubble
 while ($row = mysql_fetch_array($products, MYSQL_ASSOC)) {
   if ($row['user_id'] == $_SESSION['id']) {
 		if ($row['brand'] == 'lenovo') {
+      $price = "The price is: $" . (string)$row['price'];
 			$temp = array(
 				"name" => $row['title'],
 				"address" => $row['id'],
-				"note" => $row['price']
+				"note" => $price
 				);
 			array_push($lenovoChildren, $temp); //Add to the children array
 		}
 
 		if ($row['brand'] == 'apple') {
+      $price = "The price is: $" . $row['price'];
 			$temp = array(
 				"name" => $row['title'],
 				"address" => $row['id'],
-				"note" => $row['price']
+				"note" => $price
 				);
 			array_push($appleChildren, $temp); //Add to the children array
 		}
 
 		if ($row['brand'] == 'dell') {
+      $price = "The price is: $" . (string)$row['price'];
 			$temp = array(
 				"name" => $row['title'],
 				"address" => $row['id'],
-				"note" => $row['price']
+				"note" => $price
 				);
 			array_push($dellChildren, $temp); //Add to the children array
 
 		}}
 
     if ($row['brand'] == 'other') {
+      $price = "The price is: $" . (string)$row['price'];
 			$temp = array(
 				"name" => $row['title'],
 				"address" => $row['id'],
-				"note" => $row['price']
+				"note" => $price
 				);
 			array_push($otherChildren, $temp); //Add to the children array
 
@@ -224,6 +228,7 @@ var base_url = "http://localhost/laptop_lotus/";
 					if (d.note == null || d.note == "") {
 						noteText = d.address;
 					} else {
+            console.log(d.note);
 						noteText = d.note;
 					}
 					d3.select("#bubbleItemNote").text(noteText);
