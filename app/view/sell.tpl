@@ -94,17 +94,16 @@ while ($row = mysql_fetch_array($products, MYSQL_ASSOC)) {
 
 
 //~~~~~~~~~~This creates a json object in javascript ~~~~~~~~~~~~~~//
-/*	echo "<script>";
-	echo "var jsonText = ".json_encode($arr)."";
-	echo "</script>";*/
+  echo "<script>";
+	echo "var root = ".json_encode($arr)."";
+	echo "</script>";
 
 
-	//Writes to a file called test.json to load data
-	$file = fopen("../../test.json", "w") or die ("unable to open file");
-	fwrite($file, json_encode($arr));
+
 
 ?>
 <script type="text/javascript">
+
 var base_url = "http://localhost/laptop_lotus/";
  var w = window.innerWidth*0.68*0.95;
    var h = Math.ceil(w*0.7);
@@ -132,15 +131,14 @@ var base_url = "http://localhost/laptop_lotus/";
 	.attr("alignment-baseline", "middle")
 	.style("fill", "#888888")
 	.text(function(d) {return "Waiting for information to be loaded.";});
-    d3.json("test.json", function(error, root) {
-    	console.log(error);
+
 
     	var bubbleObj = svg.selectAll(".topBubble")
       			.data(root.children)
       		.enter().append("g")
       			.attr("id", function(d,i) {return "topBubbleAndText_" + i});
 
-      	console.log(root);
+
       	nTop = root.children.length;
       	oR = w/(1+3*nTop);
 		h = Math.ceil(w/nTop*3);
@@ -228,7 +226,7 @@ var base_url = "http://localhost/laptop_lotus/";
 					if (d.note == null || d.note == "") {
 						noteText = d.address;
 					} else {
-            console.log(d.note);
+
 						noteText = d.note;
 					}
 					d3.select("#bubbleItemNote").text(noteText);
@@ -253,7 +251,7 @@ var base_url = "http://localhost/laptop_lotus/";
 					});
      	}
 
-      });
+      // });
 
 	renderOptions = function(d,i){
 		if(whichExpanded == -1 || whichExpanded == 4){
@@ -262,8 +260,7 @@ var base_url = "http://localhost/laptop_lotus/";
 		if(optionsRendered){
 			hideOptions();
 		}
-		console.log("activating option bubbles: " + whichExpanded);
-    console.log(d);
+
 		var viewChild = new Object();
 			viewChild["name"] ="View";
 			viewChild["address"] = base_url + "detail/view/" + d.address;
@@ -288,11 +285,6 @@ var base_url = "http://localhost/laptop_lotus/";
 			.data(optionChildren)
 			.enter().append("g");
 		var iB = whichExpanded;
-		//console.log("(" + ox + "," + oy + ")");
-
-		//Create bubbles
-		//var ox = d.expX - oR *1.1*Math.cos((i + j+1)*45/180*3.1415926);
-		//var oy = d.expY - oR*1.1*Math.sin((i + j+1)*45/180*3.1415926);
 		var expX = d.expX;
 		var expY = d.expY;
 
@@ -339,10 +331,10 @@ var base_url = "http://localhost/laptop_lotus/";
 
 	hideOptions = function(){
 		//TODO stop on click options to children???
-		console.log("closing old options");
+
 		var optionBubbles = svg.selectAll(".optionBubble")
 			.remove();//hide
-		console.log(optionBubbles);
+
 		var optionBubbleText = svg.selectAll(".optionBubbleText")
 			.remove();//hide
 		optionsRendered = false;
@@ -478,7 +470,7 @@ var base_url = "http://localhost/laptop_lotus/";
 		}
 
 		whichExpanded = i;
-		console.log("turning off optionBubbles");
+
 		hideOptions();
 	}
 
