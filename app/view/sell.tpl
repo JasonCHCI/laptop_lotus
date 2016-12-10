@@ -112,6 +112,8 @@ var base_url = "http://localhost/laptop_lotus/";
    var whichExpanded = -1;
    var numOptions = 3;
    var optionsRendered = false;
+   var xOff = 0.6;
+   var yOff = 2.3;
 
    var svgContainer = d3.select("#mainBubble")
       .style("height", h+"px");
@@ -150,8 +152,8 @@ var base_url = "http://localhost/laptop_lotus/";
       		.attr("class", "topBubble")
       		.attr("id", function(d,i) {return "topBubble" + i;})
       		.attr("r", function(d) { return oR; })
-      		.attr("cx", function(d, i) {return oR*(3*(1+i)-1);})
-      		.attr("cy", (h+oR)/3)
+      		.attr("cx", function(d, i) {return oR*(3*(1+i)+xOff);})
+      		.attr("cy", (h+oR)/yOff)
       		.style("fill", function(d,i) { return colVals(i); }) // #1f77b4
    		.style("opacity",0.3)
       .attr("cursor",function(d) {
@@ -169,8 +171,8 @@ var base_url = "http://localhost/laptop_lotus/";
 
     	bubbleObj.append("text")
       		.attr("class", "topBubbleText")
-      		.attr("x", function(d, i) {return oR*(3*(1+i)-1);})
-      		.attr("y", (h+oR)/3)
+      		.attr("x", function(d, i) {return oR*(3*(1+i)+xOff);})
+      		.attr("y", (h+oR)/yOff)
 		.style("fill", function(d,i) { return colVals(i); }) // #1f77b4
       		.attr("font-size", 30)
       		.attr("text-anchor", "middle")
@@ -201,11 +203,11 @@ var base_url = "http://localhost/laptop_lotus/";
       			.attr("id", function(d,i) {return "childBubble_" + iB + "sub_" + i;})
       			.attr("r",  function(d) {return oR/3.0;})
       			.attr("cx", function(d,i) {
-					d["cx"] = oR*(3*(iB+1)-1) + oR*1.5*Math.cos((i-2)*45/180*3.1415926);
+					d["cx"] = oR*(3*(iB+1)+xOff) + oR*1.5*Math.cos((i-2)*45/180*3.1415926);
 					return d.cx;
 				})
       			.attr("cy", function(d,i) {
-					d["cy"] = (h+oR)/3 +        oR*1.5*Math.sin((i-2)*45/180*3.1415926);
+					d["cy"] = (h+oR)/yOff +        oR*1.5*Math.sin((i-2)*45/180*3.1415926);
 					return d.cy
 				})
       			.attr("cursor","pointer")
@@ -358,18 +360,18 @@ var base_url = "http://localhost/laptop_lotus/";
 
 		t.selectAll(".topBubble")
 			.attr("r", function(d) { return oR; })
-			.attr("cx", function(d, i) {return oR*(3*(1+i)-1);})
-			.attr("cy", (h+oR)/3);
+			.attr("cx", function(d, i) {return oR*(3*(1+i)+xOff);})
+			.attr("cy", (h+oR)/yOff);
 		t.selectAll(".topBubbleText")
 			.attr("font-size", 30)
-			.attr("x", function(d, i) {return oR*(3*(1+i)-1);})
-			.attr("y", (h+oR)/3);
+			.attr("x", function(d, i) {return oR*(3*(1+i)+xOff);})
+			.attr("y", (h+oR)/yOff);
 
 		for(var k = 0; k < nTop; k++)
 		{
 			t.selectAll(".childBubbleText" + k)
-				.attr("x", function(d,i) {return (oR*(3*(k+1)-1) + oR*1.5*Math.cos((i-2)*45/180*3.1415926));})
-				.attr("y", function(d,i) {return ((h+oR)/3 +        oR*1.5*Math.sin((i-2)*45/180*3.1415926));})
+				.attr("x", function(d,i) {return (oR*(3*(k+1)+xOff) + oR*1.5*Math.cos((i-2)*45/180*3.1415926));})
+				.attr("y", function(d,i) {return ((h+oR)/yOff +        oR*1.5*Math.sin((i-2)*45/180*3.1415926));})
 				.attr("font-size", 6)
 				.style("opacity",0.5);
 			t.selectAll(".childBubble" + k)
@@ -377,11 +379,11 @@ var base_url = "http://localhost/laptop_lotus/";
 				.style("opacity",0.5)
 				//cx cy used for later calculation of option bubbles.
 				.attr("cx", function(d,i) {
-					d["cx"] = oR*(3*(k+1)-1) + oR*1.5*Math.cos((i-2)*45/180*3.1415926);
+					d["cx"] = oR*(3*(k+1)+xOff) + oR*1.5*Math.cos((i-2)*45/180*3.1415926);
 					return d.cx;
 				})
 				.attr("cy", function(d,i) {
-					d["cy"] = (h+oR)/3 +        oR*1.5*Math.sin((i-2)*45/180*3.1415926);
+					d["cy"] = (h+oR)/yOff +        oR*1.5*Math.sin((i-2)*45/180*3.1415926);
 					return d.cy
 				})
 		  }
@@ -400,15 +402,15 @@ var base_url = "http://localhost/laptop_lotus/";
 			.attr("cx", function(d,ii){
 				if(i == ii) {
 					// Nothing to change
-					return oR*(3*(1+ii)-1) - 0.6*oR*(ii-1);
+					return oR*(3*(1+ii)+xOff) - 0.6*oR*(ii-1);
 				} else {
 					// Push away a little bit
 					if(ii < i){
 						// left side
-						return oR*0.6*(3*(1+ii)-1);
+						return oR*0.6*(3*(1+ii)+xOff);
 					} else {
 						// right side
-						return oR*(nTop*3+1) - oR*0.6*(3*(nTop-ii)-1);
+						return oR*(nTop*3+2.5) - oR*0.6*(3*(nTop-ii));
 					}
 				}
 			})
@@ -423,15 +425,15 @@ var base_url = "http://localhost/laptop_lotus/";
 			.attr("x", function(d,ii){
 				if(i == ii) {
 					// Nothing to change
-					return oR*(3*(1+ii)-1) - 0.6*oR*(ii-1);
+					return oR*(3*(1+ii)+xOff) - 0.6*oR*(ii-1);
 				} else {
 					// Push away a little bit
 					if(ii < i){
 						// left side
-						return oR*0.6*(3*(1+ii)-1);
+						return oR*0.6*(3*(1+ii)+xOff);
 					} else {
 						// right side
-						return oR*(nTop*3+1) - oR*0.6*(3*(nTop-ii)-1);
+						return oR*(nTop*3 + 2.5) - oR*0.6*(3*(nTop-ii));
 					}
 				}
 			})
@@ -448,8 +450,8 @@ var base_url = "http://localhost/laptop_lotus/";
 			signSide = 1;
 			if(k < nTop/2) signSide = 1;
 			t.selectAll(".childBubbleText" + k)
-				.attr("x", function(d,i) {d["expX"] = oR*(3*(k+1)-1) - 0.6*oR*(k-1) + signSide*oR*2.5*Math.cos((i-2)*45/180*3.1415926); return d.expX;})
-				.attr("y", function(d,i) {d["expY"] = (h+oR)/3 + signSide*oR*2.5*Math.sin((i-2)*45/180*3.1415926); return d.expY;})
+				.attr("x", function(d,i) {d["expX"] = oR*(3*(k+1)+xOff) - 0.6*oR*(k-1) + signSide*oR*2.5*Math.cos((i-2)*45/180*3.1415926); return d.expX;})
+				.attr("y", function(d,i) {d["expY"] = (h+oR)/yOff + signSide*oR*2.5*Math.sin((i-2)*45/180*3.1415926); return d.expY;})
 				.attr("font-size", function(){
 						return (k==i)?12:6;
 					})
@@ -458,8 +460,8 @@ var base_url = "http://localhost/laptop_lotus/";
 					});
 
 			t.selectAll(".childBubble" + k)
-				.attr("cx", function(d,i) {d["expX"] = oR*(3*(k+1)-1) - 0.6*oR*(k-1) + signSide*oR*2.5*Math.cos((i-2)*45/180*3.1415926); return d.expX;})
-				.attr("cy", function(d,i) {d["expY"] = (h+oR)/3 + signSide*oR*2.5*Math.sin((i-2)*45/180*3.1415926);return d.expY;})
+				.attr("cx", function(d,i) {d["expX"] = oR*(3*(k+1)+xOff) - 0.6*oR*(k-1) + signSide*oR*2.5*Math.cos((i-2)*45/180*3.1415926); return d.expX;})
+				.attr("cy", function(d,i) {d["expY"] = (h+oR)/yOff + signSide*oR*2.5*Math.sin((i-2)*45/180*3.1415926);return d.expY;})
 				.attr("r", function(){
 						return (k==i)?(oR*0.55):(oR/3.0);
 				})
