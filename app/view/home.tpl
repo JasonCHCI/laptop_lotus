@@ -9,7 +9,7 @@
 			<li><a href="<?= BASE_URL ?>/result">Today's Deals</a></li>
 			<li><a href="<?= BASE_URL ?>/result">New Arrivals</a></li>
 
-			<li><a href="<?= BASE_URL ?>/sell">Sell</a></li>
+			<li><a href="<?= BASE_URL ?>/sell">Manage</a></li>
 		</ul>
 	</div>
 	<div id="ads">
@@ -18,7 +18,7 @@
 		<!-- Source: http://shop.lenovo.com/us/en/yoga-book?ipromoID=LEN748504 -->
 		<div id="box3"><img class="image arrow a2" src="<?= BASE_URL ?>/public/img/rarrow.gif" alt="next" onclick="next()"></div>
 	</div>
-	
+
 	<div id = twitter>
 		<a class="twitter-timeline" data-width="250" href="https://twitter.com/laptop_lotus">Tweets by laptop_lotus</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</div>

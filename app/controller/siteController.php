@@ -115,7 +115,7 @@ class SiteController {
 
 		$uid1 = $_SESSION['id']; // unFollower
 		//$pid is the unfollowee
-		
+
 
 
 	$q = "SELECT * FROM event WHERE user_id_1 = '$uid1' AND user_id_2 = $pid AND type_id = 1";
@@ -157,7 +157,7 @@ class SiteController {
 			'date_created' => $date
 		);
 
-		
+
 
 		$q = $db->buildInsertQuery('event', $data);
 		$db->execute($q);
@@ -173,16 +173,6 @@ class SiteController {
 		window.location.href= baseURL + '/profile/' + pid;
 		</script>";
 
-	}
-
-	function debug_to_console( $data ) {
-
-		if ( is_array( $data ) )
-		$output = "<script>console.log( 'Debug Objects: " . implode( ',', $data) . "' );</script>";
-		else
-		$output = "<script>console.log( 'Debug Objects: " . $data . "' );</script>";
-
-		echo $output;
 	}
 
 	function followProfile($pid) {
@@ -204,12 +194,12 @@ class SiteController {
 			'date_created' => null
 		);
 
-		
+
 
 		$q = $db->buildInsertQuery('event', $data);
-		
+
 		$db->execute($q);
-		
+
 
 		echo "<script>var baseURL ='".BASE_URL."'</script>";
 		echo "<script>var pid ='".$pid."'</script>";

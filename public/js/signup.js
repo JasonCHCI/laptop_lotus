@@ -22,7 +22,6 @@ $(document).ready(function(){
 
     var empty = false;
     $('form input').each(function() {
-      console.log($(this).hasClass("unavailable"));
       if ($(this).hasClass("unavailable") || $(this).val() == '') {
         empty = true;
       }
